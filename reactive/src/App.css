@@ -1,0 +1,42 @@
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+} */
+
+body {
+  background-color:black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.analyzer-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* use display: none to hide the analyzer */
+}
+
+.canvas-box {
+  border: white 1px solid;
+  height: 1080px;
+  width: 1920px;
+  display: flex;
+}
+
+.box-1 {
+  width: 150px;
+  height: 150px;
+  background: white;
+  border-radius: 30px;
+}
+
+.box-2 {
+  width: 150px;
+  height: 150px;
+  background: blue;
+  border-radius: 30px;
+}
