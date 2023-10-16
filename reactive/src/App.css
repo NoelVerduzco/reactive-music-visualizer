@@ -18,6 +18,7 @@ body {
   flex-direction: column;
   justify-content: center;
   /* use display: none to hide the analyzer */
+  /* display: none; */
 }
 
 .canvas-box {

@@ -44,7 +44,7 @@ function AudioAnalyzer({ isPlaying, setIsPlaying, setSoundData }) {
 
     useEffect(() => {
         if (isPlaying) {
-            const timerID = setInterval(() => getSoundData(), 100);
+            const timerID = setInterval(() => getSoundData(), 10);
             return () => {
                 clearInterval(timerID);
             };
@@ -52,8 +52,8 @@ function AudioAnalyzer({ isPlaying, setIsPlaying, setSoundData }) {
     }, [isPlaying]);
 
     const getSoundData = () => {
-        console.log(audioMotion.getBars()[0].value[0]); // First bin, left channel audio energy values
-        setSoundData(audioMotion.getBars()[5].value[0]);
+        console.log(audioMotion.getBars()[13].value[0]); // First bin, left channel audio energy values
+        setSoundData(audioMotion.getBars()[13].value[0]);
     };
 
     return (

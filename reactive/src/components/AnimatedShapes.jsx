@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
 
-function AnimatedShapes({ isPlaying, soundData }) {
+function AnimatedShapes({ soundData }) {
     return (
         <div className="canvas-box">
             <motion.div
                 className="box-2"
-                initial={{ scale: 0, y: 0 }}
+                initial={{ scale: 0, y: 100 }}
                 animate={{ rotate: (soundData * 360) | 0, scale: 1 }}
                 transition={{
                     type: 'spring',
