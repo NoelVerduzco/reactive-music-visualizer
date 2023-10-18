@@ -1,26 +1,35 @@
 import AudioAnalyzer from './components/AudioAnalyzer';
-import AnimatedShapes from './components/AnimatedShapes';
+import Canvas from './components/Canvas';
+import MainMenu from './components/main-menu/MainMenu';
+import ShapePropsArrayContext from './context/ShapePropsArrayContext';
 import { useState } from 'react';
 import './App.css';
 
 function App() {
-    const [isPlaying, setIsPlaying] = useState(false);
     const [currentVolume, setCurrentVolume] = useState(0);
     const [currentSongTime, setCurrentSongTime] = useState(0);
+    const [shapePropsArray, setShapePropsArray] = useState([]);
 
     return (
-        <div>
-            <AudioAnalyzer
-                isPlaying={isPlaying}
-                setIsPlaying={setIsPlaying}
-                setCurrentVolume={setCurrentVolume}
-                setCurrentSongTime={setCurrentSongTime}
-            />
-            <AnimatedShapes
-                currentVolume={currentVolume}
-                currentSongTime={currentSongTime}
-            />
-        </div>
+        <>
+            <ShapePropsArrayContext.Provider
+                value={{ shapePropsArray, setShapePropsArray }}
+            >
+                <div>
+                    <MainMenu />
+                </div>
+                <div>
+                    <AudioAnalyzer
+                        setCurrentVolume={setCurrentVolume}
+                        setCurrentSongTime={setCurrentSongTime}
+                    />
+                    <Canvas
+                        currentVolume={currentVolume}
+                        currentSongTime={currentSongTime}
+                    />
+                </div>
+            </ShapePropsArrayContext.Provider>
+        </>
     );
 }
 

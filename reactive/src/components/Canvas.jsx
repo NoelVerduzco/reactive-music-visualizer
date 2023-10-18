@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import ShapePropsArrayContext from '../context/ShapePropsArrayContext';
 
-function AnimatedShapes({ currentVolume }) {
+function Canvas({ currentVolume, currentSongTime }) {
+    const { shapePropsArray, setShapePropsArray } = useContext(ShapePropsArrayContext);
+
     // STRETCH: Circular motion
     // STRETCH: Bounce
 
@@ -146,7 +149,23 @@ function AnimatedShapes({ currentVolume }) {
 
     return (
         <div className="canvas-box">
-            {dbShapesWithReactiveProps.map((shape) => {
+            {shapePropsArray.length === 0 ? (
+                <p>Nothing to see here!</p>
+            ) : (
+                shapePropsArray.map((shape) => {
+                    return (
+                        <motion.div
+                            id={shape.id}
+                            className={shape.className}
+                            initial={shape.initial}
+                            animate={shape.animate}
+                            transition={shape.transition}
+                        ></motion.div>
+                    );
+                })
+            )}
+
+            {/* {shapePropsArray.map((shape) => {
                 return (
                     <motion.div
                         id={shape.id}
@@ -156,9 +175,9 @@ function AnimatedShapes({ currentVolume }) {
                         transition={shape.transition}
                     ></motion.div>
                 );
-            })}
+            })} */}
         </div>
     );
 }
 
-export default AnimatedShapes;
+export default Canvas;

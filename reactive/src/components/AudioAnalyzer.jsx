@@ -1,15 +1,11 @@
 import AudioMotionAnalyzer from 'audiomotion-analyzer';
 import { useEffect, useState } from 'react';
 
-function AudioAnalyzer({
-    isPlaying,
-    setIsPlaying,
-    setCurrentVolume,
-    setCurrentSongTime,
-}) {
+function AudioAnalyzer({ setCurrentVolume, setCurrentSongTime }) {
     const [audioElement, setAudioElement] = useState(null);
     const [uploadElement, setUploadElement] = useState(null);
     const [audioMotion, setAudioMotion] = useState(null);
+    const [isPlaying, setIsPlaying] = useState(false);
 
     useEffect(() => {
         // Find the audio element
