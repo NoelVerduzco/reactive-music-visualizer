@@ -41,7 +41,7 @@ function AudioAnalyzer({
                     source: audioElement,
                     height: 1080,
                     width: 1920,
-                    mode: 4,
+                    mode: 5,
                     gradient: 'prism',
                     channelLayout: 'dual-vertical',
                     barSpace: 0.5,
@@ -75,7 +75,7 @@ function AudioAnalyzer({
 
     const getCurrentVolume = () => {
         // Frequency bins [0 - 60]
-        let frequencyBin = 13;
+        let frequencyBin = 3;
         // Left/Right audio channels [0 - 1]
         let leftRightAudioChannel = 0;
         let volume =

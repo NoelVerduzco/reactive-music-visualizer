@@ -1,75 +1,38 @@
-import { animate, motion } from 'framer-motion';
-import { useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 function AnimatedShapes({ currentVolume }) {
-    // fadein fadeout opacity
-    // circular motion
-    // bounce?
-    // x,y,z origin?
+    // STRETCH: Circular motion
+    // STRETCH: Bounce
+
+    // TODO: x,y,z origin
 
     // TODO:
-    // className maximums: [1, CSS design], [1, reactive], [1, rotation], [1, x-translation], [1, y-translation], [1, scale]
+    // className maximums: [1, CSS design], [1, reactive], [1, rotation], [1, x-translation], [1, y-translation], [1, scale], [1, fade]
     // toggle classnames with radio buttons to prevent user from selecting more than one
     // add sliders to allow user to edit shape's position, maximum rotation, and scale value
+
+    // const [shapes, setShapes] = useState([]);
+
     const dbShapePropsOne = {
         id: 1,
-        className: 'square reactive rotate-cw',
-        initial: { rotate: 0, x: 100, y: 0 },
-        animate: { rotate: 0 },
-        transition: { type: 'spring', stiffness: 500, damping: 25 },
-    };
-    const dbShapePropsTwo = {
-        id: 2,
-        className: 'circle reactive grow',
-        initial: { scale: 0, x: 200, y: 0 },
-        animate: { scale: 0 },
-        transition: { type: 'spring', stiffness: 500, damping: 25 },
-    };
-    const dbShapePropsFour = {
-        id: 4,
-        className: 'oval reactive translate-Y-down',
-        initial: { x: 300, y: 0 },
-        animate: { y: 0 },
-        transition: { type: 'spring', stiffness: 500, damping: 25 },
-    };
-    const dbShapePropsFive = {
-        id: 5,
-        className: 'oval reactive translate-X-right',
-        initial: { x: 300, y: 0 },
-        animate: { x: 0 },
-        transition: { type: 'spring', stiffness: 500, damping: 25 },
-    };
-    const dbShapePropsSix = {
-        id: 6,
-        className: 'oval reactive translate-X-right translate-Y-down',
-        initial: { x: 0, y: 0 },
-        animate: { x: 0, y: 0 },
-        transition: { type: 'spring', stiffness: 500, damping: 25 },
-    };
-    const dbShapePropsSeven = {
-        id: 7,
-        className:
-            'square reactive translate-X-left translate-Y-up rotate-cw grow',
-        initial: { x: 0, y: 0 },
-        animate: { x: 0, y: 0, rotate: 0 },
-        transition: { type: 'spring', stiffness: 500, damping: 25 },
+        className: 'circle reactive spring grow',
+        initial: {},
+        animate: {},
+        transition: {},
     };
 
-    const dbShapesWithoutReactiveProps = [
-        dbShapePropsOne,
-        dbShapePropsTwo,
-        dbShapePropsFour,
-        dbShapePropsFive,
-        dbShapePropsSix,
-        dbShapePropsSeven,
-    ];
+    // This will be replaced with API GET request data from backend/DB
+    const dbShapesWithoutReactiveProps = [dbShapePropsOne];
 
     function addReactivePropsToShapeProps(shapeProps) {
         const { id } = shapeProps;
         const { className } = shapeProps;
-        const { initial } = shapeProps;
+        let { initial } = shapeProps;
         let { animate } = className.includes('reactive') ? {} : shapeProps;
-        const { transition } = shapeProps;
+        let { transition } = className.includes('spring')
+            ? { type: 'spring', stiffness: 500, damping: 25 }
+            : shapeProps;
 
         if (className.includes('reactive')) {
             if (className.includes('rotate-cw')) {
@@ -85,40 +48,72 @@ function AnimatedShapes({ currentVolume }) {
                 animate = { ...animate, ...reactiveRotateCCW };
             }
             if (className.includes('grow')) {
+                const reactiveGrowInitial = {
+                    scale: 0,
+                };
+                initial = { ...initial, ...reactiveGrowInitial };
+
                 const reactiveGrow = {
                     scale: currentVolume,
                 };
                 animate = { ...animate, ...reactiveGrow };
             }
             if (className.includes('shrink')) {
+                // const reactiveShrinkInitial = {
+                //     scale: 1,
+                // };
+                // initial = { ...initial, ...reactiveShrinkInitial };
+
                 const reactiveShrink = {
                     scale: !currentVolume ? 1 : 1 - currentVolume,
                 };
                 animate = { ...animate, ...reactiveShrink };
             }
-            if (className.includes('translate-X-right')) {
-                const reactiveTranslateXRight = {
-                    x: 100 * currentVolume,
-                };
-                animate = { ...animate, ...reactiveTranslateXRight };
-            }
-            if (className.includes('translate-Y-down')) {
-                const reactiveTranslateYDown = {
-                    y: 100 * currentVolume,
-                };
-                animate = { ...animate, ...reactiveTranslateYDown };
-            }
-            if (className.includes('translate-X-left')) {
-                const reactiveTranslateXLeft = {
-                    x: -100 * currentVolume,
-                };
-                animate = { ...animate, ...reactiveTranslateXLeft };
-            }
-            if (className.includes('translate-Y-up')) {
-                const reactiveTranslateYUp = {
+            if (className.includes('translate-up')) {
+                const reactiveTranslateUp = {
                     y: -100 * currentVolume,
                 };
-                animate = { ...animate, ...reactiveTranslateYUp };
+                animate = { ...animate, ...reactiveTranslateUp };
+            }
+            if (className.includes('translate-down')) {
+                const reactiveTranslateDown = {
+                    y: 100 * currentVolume,
+                };
+                animate = { ...animate, ...reactiveTranslateDown };
+            }
+            if (className.includes('translate-left')) {
+                const reactiveTranslateLeft = {
+                    x: -100 * currentVolume,
+                };
+                animate = { ...animate, ...reactiveTranslateLeft };
+            }
+            if (className.includes('translate-right')) {
+                const reactiveTranslateRight = {
+                    x: 100 * currentVolume,
+                };
+                animate = { ...animate, ...reactiveTranslateRight };
+            }
+            if (className.includes('fade-in')) {
+                const reactiveFadeInInitial = {
+                    opacity: 0,
+                };
+                initial = { ...initial, ...reactiveFadeInInitial };
+
+                const reactiveFadeIn = {
+                    opacity: !currentVolume ? 0 : currentVolume,
+                };
+                animate = { ...animate, ...reactiveFadeIn };
+            }
+            if (className.includes('fade-out')) {
+                // const reactiveFadeOutInitial = {
+                //     opacity: 1,
+                // };
+                // initial = { ...initial, ...reactiveFadeOutInitial };
+
+                const reactiveFadeOut = {
+                    opacity: !currentVolume ? 1 : 1 - currentVolume,
+                };
+                animate = { ...animate, ...reactiveFadeOut };
             }
         }
 
@@ -138,6 +133,11 @@ function AnimatedShapes({ currentVolume }) {
             addReactivePropsToShapeProps(shapeProps)
         );
     }
+
+    // useEffect(() => {
+    //     console.log(shapes);
+    //     setShapes(dbShapesWithReactiveProps);
+    // },[]);
 
     // useEffect(() => {
     //     console.log(dbShapesWithReactiveProps[0].animate.rotate)
