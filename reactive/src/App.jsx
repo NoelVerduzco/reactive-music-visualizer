@@ -5,16 +5,21 @@ import './App.css';
 
 function App() {
     const [isPlaying, setIsPlaying] = useState(false);
-    const [soundData, setSoundData] = useState();
+    const [currentVolume, setCurrentVolume] = useState(0);
+    const [currentSongTime, setCurrentSongTime] = useState(0);
 
     return (
         <div>
             <AudioAnalyzer
                 isPlaying={isPlaying}
                 setIsPlaying={setIsPlaying}
-                setSoundData={setSoundData}
+                setCurrentVolume={setCurrentVolume}
+                setCurrentSongTime={setCurrentSongTime}
             />
-            <AnimatedShapes isPlaying={isPlaying} soundData={soundData} />
+            <AnimatedShapes
+                currentVolume={currentVolume}
+                currentSongTime={currentSongTime}
+            />
         </div>
     );
 }

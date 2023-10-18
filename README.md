@@ -11,6 +11,7 @@
 ### Packages Used
 * audiomotion-analyzer
 * framer-motion
+* vite-plugin-svgr
 
 ## 1. Problem Statement
 

@@ -1,33 +1,44 @@
 import AudioMotionAnalyzer from 'audiomotion-analyzer';
 import { useEffect, useState } from 'react';
 
-function AudioAnalyzer({ isPlaying, setIsPlaying, setSoundData }) {
-    const [audioEl, setAudioEl] = useState();
-    const [audioMotion, setAudioMotion] = useState();
+function AudioAnalyzer({
+    isPlaying,
+    setIsPlaying,
+    setCurrentVolume,
+    setCurrentSongTime,
+}) {
+    const [audioElement, setAudioElement] = useState(null);
+    const [uploadElement, setUploadElement] = useState(null);
+    const [audioMotion, setAudioMotion] = useState(null);
 
     useEffect(() => {
-        setAudioEl(document.getElementById('audio'));
+        // Find the audio element
+        setAudioElement(document.getElementById('audio'));
     }, []);
 
     useEffect(() => {
-        if (audioEl) {
-            // Upload audio files only after there is a non-null audio element (audioEl)
-            document
-                .getElementById('upload')
-                .addEventListener('change', (e) => {
-                    const fileBlob = e.target.files[0];
+        if (audioElement && !uploadElement) {
+            setUploadElement(
+                // Upload audio files
+                document
+                    .getElementById('upload')
+                    .addEventListener('change', (e) => {
+                        const fileBlob = e.target.files[0];
 
-                    if (fileBlob) {
-                        audioEl.src = URL.createObjectURL(fileBlob);
-                        audioEl.play();
-                        setIsPlaying(!audioEl.paused);
-                    }
-                });
+                        if (fileBlob) {
+                            audioElement.src = URL.createObjectURL(fileBlob);
+                            audioElement.play();
+                            setIsPlaying(!audioElement.paused);
+                        }
+                    })
+            );
+        }
 
+        if (audioElement && !audioMotion) {
             setAudioMotion(
-                // Instantiate the analyzer only after there is a non-null audio element (audioEl)
+                // Instantiate the audio analyzer
                 new AudioMotionAnalyzer(document.getElementById('container'), {
-                    source: audioEl,
+                    source: audioElement,
                     height: 1080,
                     width: 1920,
                     mode: 4,
@@ -40,20 +51,41 @@ function AudioAnalyzer({ isPlaying, setIsPlaying, setSoundData }) {
                 })
             );
         }
-    }, [audioEl]);
+    }, [audioElement]);
 
+    // Get volume data
     useEffect(() => {
         if (isPlaying) {
-            const timerID = setInterval(() => getSoundData(), 10);
+            // Data rate (milliseconds)
+            let dataRate = 50;
+            const currentVolumeId = setInterval(
+                () => getCurrentVolume(),
+                dataRate
+            );
+            const currentTimeId = setInterval(
+                () => getCurrentSongTime(),
+                dataRate
+            );
             return () => {
-                clearInterval(timerID);
+                clearInterval(currentVolumeId);
+                clearInterval(currentTimeId);
             };
         }
     }, [isPlaying]);
 
-    const getSoundData = () => {
-        console.log(audioMotion.getBars()[13].value[0]); // First bin, left channel audio energy values
-        setSoundData(audioMotion.getBars()[13].value[0]);
+    const getCurrentVolume = () => {
+        // Frequency bins [0 - 60]
+        let frequencyBin = 13;
+        // Left/Right audio channels [0 - 1]
+        let leftRightAudioChannel = 0;
+        let volume =
+            audioMotion.getBars()[frequencyBin].value[leftRightAudioChannel];
+        setCurrentVolume(volume);
+    };
+
+    const getCurrentSongTime = () => {
+        let songTime = audioElement.currentTime;
+        setCurrentSongTime(songTime);
     };
 
     return (
