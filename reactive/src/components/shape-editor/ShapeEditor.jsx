@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 
 import ShapeInFocusContext from '../../context/ShapeInFocusContext';
 import DeleteShape from './delete-shape/DeleteShape';
+import Properties from './properties/Properties';
 
 function ShapeEditor() {
     const { shapeInFocus } = useContext(ShapeInFocusContext);
@@ -26,6 +27,7 @@ function ShapeEditor() {
                       shapeInFocus.shapeName.slice(1)}
             </h1>
             <DeleteShape />
+            <Properties />
         </>
     );
 }

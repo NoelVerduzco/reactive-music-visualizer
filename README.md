@@ -13,6 +13,19 @@
 * framer-motion
 * vite-plugin-svgr
 
+### Data to be saved
+* **Global Settings**
+* Date Rate: int
+* Canvas Color: String
+
+
+* **Shape Properties**
+* Color: String
+* Size: int
+
+* **Shape Effects**
+* ...
+
 ## 1. Problem Statement
 
 > Do you love music and videos? If so, you probably love watching music videos. Maybe you've thought to yourself, "It'd be so cool to make my own visuals for my favorite song!"

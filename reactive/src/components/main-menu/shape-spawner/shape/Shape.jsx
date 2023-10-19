@@ -27,21 +27,16 @@ function Shape({ shapeName }) {
 
     function handleCreateShapeClick(shapeName) {
         const shapeProps = {
-            uniqueId: makeRandomUniqueId(8),
+            uniqueId: makeRandomUniqueId(6),
             shapeName: shapeName,
             className: 'reactive ' + shapeName,
+            style: '#ffffff',
             initial: {},
             animate: {},
             transition: {},
         };
 
         setShapeInFocusByUniqueId(shapeProps.uniqueId)
-        // for shapes already on the canvas,
-        // when a shape is clicked
-        // setShapeInFocusByUniqueId
-        // then findShapeByUniqueId from shapePropsArray
-        // then setShapeInFocus
-
         setShapeInFocus(shapeProps);
         setShapePropsArray([...shapePropsArray, shapeProps]);
     }

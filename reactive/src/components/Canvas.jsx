@@ -148,7 +148,7 @@ function Canvas({ currentVolume }) {
     return (
         <div id="canvas" style={{ backgroundColor: canvasColor }}>
             {shapePropsArray.length === 0 ? (
-                <p>Nothing to see here!</p>
+                <h1>Click on a shape to get started!</h1>
             ) : (
                 shapePropsArray.map((shapeProps) => {
                     return (
@@ -156,6 +156,7 @@ function Canvas({ currentVolume }) {
                             uniqueId={shapeProps.uniqueId}
                             shapeName={shapeProps.shapeName}
                             className={shapeProps.className}
+                            style={{backgroundColor: shapeProps.style}}
                             initial={shapeProps.initial}
                             animate={shapeProps.animate}
                             transition={shapeProps.transition}
