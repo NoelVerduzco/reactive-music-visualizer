@@ -1,13 +1,19 @@
 import { motion } from 'framer-motion';
 import { useContext, useEffect, useState } from 'react';
 import ShapePropsArrayContext from '../context/ShapePropsArrayContext';
-import CanvasColorContext from '../context/CanvasColorContext'
+import CanvasColorContext from '../context/CanvasColorContext';
+import ShapeInFocusByUniqueIdContext from '../context/ShapeInFocusByUniqueIdContext';
+import ShapeInFocusContext from '../context/ShapeInFocusContext'
 
-function Canvas({ currentVolume, currentSongTime }) {
+function Canvas({ currentVolume }) {
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
     );
     const { canvasColor } = useContext(CanvasColorContext);
+    const { setShapeInFocusByUniqueId } = useContext(
+        ShapeInFocusByUniqueIdContext
+    );
+    const { setShapeInFocus } = useContext(ShapeInFocusContext)
 
     // STRETCH: Circular motion
     // STRETCH: Bounce
@@ -140,18 +146,23 @@ function Canvas({ currentVolume, currentSongTime }) {
     }
 
     return (
-        <div id="canvas" style={{backgroundColor: canvasColor}}>
+        <div id="canvas" style={{ backgroundColor: canvasColor }}>
             {shapePropsArray.length === 0 ? (
                 <p>Nothing to see here!</p>
             ) : (
-                shapePropsArray.map((shape) => {
+                shapePropsArray.map((shapeProps) => {
                     return (
                         <motion.div
-                            id={shape.id}
-                            className={shape.className}
-                            initial={shape.initial}
-                            animate={shape.animate}
-                            transition={shape.transition}
+                            uniqueId={shapeProps.uniqueId}
+                            shapeName={shapeProps.shapeName}
+                            className={shapeProps.className}
+                            initial={shapeProps.initial}
+                            animate={shapeProps.animate}
+                            transition={shapeProps.transition}
+                            onClick={() => {
+                                setShapeInFocusByUniqueId(shapeProps.uniqueId);
+                                setShapeInFocus(shapeProps);
+                            }}
                         ></motion.div>
                     );
                 })
