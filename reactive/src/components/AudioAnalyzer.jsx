@@ -1,7 +1,10 @@
 import AudioMotionAnalyzer from 'audiomotion-analyzer';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import DataRateContext from '../context/DataRateContext';
 
 function AudioAnalyzer({ setCurrentVolume, setCurrentSongTime }) {
+    const { dataRate } = useContext(DataRateContext);
+
     const [audioElement, setAudioElement] = useState(null);
     const [uploadElement, setUploadElement] = useState(null);
     const [audioMotion, setAudioMotion] = useState(null);
@@ -53,7 +56,6 @@ function AudioAnalyzer({ setCurrentVolume, setCurrentSongTime }) {
     useEffect(() => {
         if (isPlaying) {
             // Data rate (milliseconds)
-            let dataRate = 50;
             const currentVolumeId = setInterval(
                 () => getCurrentVolume(),
                 dataRate
@@ -85,7 +87,7 @@ function AudioAnalyzer({ setCurrentVolume, setCurrentSongTime }) {
     };
 
     return (
-        <div className="analyzer-box">
+        <div id="audio-analyzer">
             {/* Analyzer container */}
             <div id="container"></div>
 

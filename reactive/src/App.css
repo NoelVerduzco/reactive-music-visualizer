@@ -13,7 +13,17 @@ body {
     align-items: center;
 }
 
-.analyzer-box {
+#main-components {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#display-shape {
+    margin-top: 50px;
+}
+
+#audio-analyzer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,7 +31,7 @@ body {
     /* display: none; */
 }
 
-.canvas-box {
+#canvas {
     border: white 1px solid;
     height: 1080px;
     width: 1920px;

@@ -1,9 +1,13 @@
 import { motion } from 'framer-motion';
 import { useContext, useEffect, useState } from 'react';
 import ShapePropsArrayContext from '../context/ShapePropsArrayContext';
+import CanvasColorContext from '../context/CanvasColorContext'
 
 function Canvas({ currentVolume, currentSongTime }) {
-    const { shapePropsArray, setShapePropsArray } = useContext(ShapePropsArrayContext);
+    const { shapePropsArray, setShapePropsArray } = useContext(
+        ShapePropsArrayContext
+    );
+    const { canvasColor } = useContext(CanvasColorContext);
 
     // STRETCH: Circular motion
     // STRETCH: Bounce
@@ -14,8 +18,6 @@ function Canvas({ currentVolume, currentSongTime }) {
     // className maximums: [1, CSS design], [1, reactive], [1, rotation], [1, x-translation], [1, y-translation], [1, scale], [1, fade]
     // toggle classnames with radio buttons to prevent user from selecting more than one
     // add sliders to allow user to edit shape's position, maximum rotation, and scale value
-
-    // const [shapes, setShapes] = useState([]);
 
     const dbShapePropsOne = {
         id: 1,
@@ -137,18 +139,8 @@ function Canvas({ currentVolume, currentSongTime }) {
         );
     }
 
-    // useEffect(() => {
-    //     console.log(shapes);
-    //     setShapes(dbShapesWithReactiveProps);
-    // },[]);
-
-    // useEffect(() => {
-    //     console.log(dbShapesWithReactiveProps[0].animate.rotate)
-    //     console.log(dbShapesWithReactiveProps[1].animate.scale)
-    // },[currentVolume])
-
     return (
-        <div className="canvas-box">
+        <div id="canvas" style={{backgroundColor: canvasColor}}>
             {shapePropsArray.length === 0 ? (
                 <p>Nothing to see here!</p>
             ) : (
@@ -164,18 +156,6 @@ function Canvas({ currentVolume, currentSongTime }) {
                     );
                 })
             )}
-
-            {/* {shapePropsArray.map((shape) => {
-                return (
-                    <motion.div
-                        id={shape.id}
-                        className={shape.className}
-                        initial={shape.initial}
-                        animate={shape.animate}
-                        transition={shape.transition}
-                    ></motion.div>
-                );
-            })} */}
         </div>
     );
 }

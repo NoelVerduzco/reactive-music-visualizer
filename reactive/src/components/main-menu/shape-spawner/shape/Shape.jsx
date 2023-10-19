@@ -18,7 +18,12 @@ function Shape({ shapeName }) {
     }
 
     return (
-        <div className={shapeName} onClick={() => createShape(shapeName)}></div>
+        <div id='display-shape'>
+            <div
+                className={shapeName}
+                onClick={() => createShape(shapeName)}
+            ></div>
+        </div>
     );
 }
 
