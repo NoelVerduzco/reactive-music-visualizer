@@ -6,9 +6,7 @@ import ShapeInFocusContext from '../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../context/ShapePropsArrayContext';
 
 function Canvas({ currentVolume }) {
-    const { shapePropsArray } = useContext(
-        ShapePropsArrayContext
-    );
+    const { shapePropsArray } = useContext(ShapePropsArrayContext);
     const { canvasColor } = useContext(CanvasColorContext);
     const { setShapeInFocusByUniqueId } = useContext(
         ShapeInFocusByUniqueIdContext
@@ -19,22 +17,7 @@ function Canvas({ currentVolume }) {
     // STRETCH: Bounce
 
     // TODO: x,y,z origin
-    // TODO:
-    // className maximums: [1, CSS design], [1, reactive], [1, rotation], [1, x-translation], [1, y-translation], [1, scale], [1, fade]
-    // toggle classnames with radio buttons to prevent user from selecting more than one
-    // add sliders to allow user to edit shape's position, maximum rotation, and scale value
-
-    const dbShapePropsOne = {
-        id: 1,
-        className: 'circle reactive spring grow',
-        initial: {},
-        animate: {},
-        transition: {},
-    };
-
-    // This will be replaced with API GET request data from backend/DB
-    const dbShapesWithoutReactiveProps = [dbShapePropsOne];
-
+    // TODO: Update this method based upon diagram
     function addReactivePropsToShapeProps(shapeProps) {
         const { id } = shapeProps;
         const { className } = shapeProps;
@@ -75,6 +58,8 @@ function Canvas({ currentVolume }) {
                 // initial = { ...initial, ...reactiveShrinkInitial };
 
                 const reactiveShrink = {
+                    // replace reactive equation with this : f(V) = (N - 1) * V + 1
+                    // N is user input from [0,1] and V is currentVolume
                     scale: !currentVolume ? 1 : 1 - currentVolume,
                 };
                 animate = { ...animate, ...reactiveShrink };
@@ -121,6 +106,8 @@ function Canvas({ currentVolume }) {
                 // initial = { ...initial, ...reactiveFadeOutInitial };
 
                 const reactiveFadeOut = {
+                    // replace reactive equation with this : f(V) = (N - 1) * V + 1
+                    // N is user input from [0,1] and V is currentVolume
                     opacity: !currentVolume ? 1 : 1 - currentVolume,
                 };
                 animate = { ...animate, ...reactiveFadeOut };
@@ -134,14 +121,6 @@ function Canvas({ currentVolume }) {
             animate,
             transition,
         };
-    }
-
-    const dbShapesWithReactiveProps = [];
-
-    for (const shapeProps of dbShapesWithoutReactiveProps) {
-        dbShapesWithReactiveProps.push(
-            addReactivePropsToShapeProps(shapeProps)
-        );
     }
 
     return (

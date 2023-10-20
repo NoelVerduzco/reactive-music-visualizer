@@ -4,6 +4,7 @@ import ShapeInFocusByUniqueIdContext from '../../../../context/ShapeInFocusByUni
 import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
 
 function ShapeColor() {
+    // TODO: ShapeColorContext may not be necessary
     const { setShapeColor } = useContext(ShapeColorContext);
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
