@@ -1,7 +1,7 @@
-import ShapePropsArrayContext from '../../../context/ShapePropsArrayContext';
-import ShapeInFocusByUniqueIdContext from '../../../context/ShapeInFocusByUniqueIdContext';
-import ShapeInFocusContext from '../../../context/ShapeInFocusContext'
 import { useContext } from 'react';
+import ShapeInFocusByUniqueIdContext from '../../../context/ShapeInFocusByUniqueIdContext';
+import ShapeInFocusContext from '../../../context/ShapeInFocusContext';
+import ShapePropsArrayContext from '../../../context/ShapePropsArrayContext';
 
 function DeleteShape() {
     const { shapeInFocusByUniqueId, setShapeInFocusByUniqueId } = useContext(
@@ -10,7 +10,7 @@ function DeleteShape() {
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
     );
-    const { setShapeInFocus } = useContext(ShapeInFocusContext)
+    const { setShapeInFocus } = useContext(ShapeInFocusContext);
 
     function handleDeleteShapeClick() {
         let copiedArray = [...shapePropsArray];

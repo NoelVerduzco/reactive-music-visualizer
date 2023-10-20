@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import ShapeColorContext from '../../../../context/ShapeColorContext';
-import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
 import ShapeInFocusByUniqueIdContext from '../../../../context/ShapeInFocusByUniqueIdContext';
+import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
 
 function ShapeColor() {
     const { setShapeColor } = useContext(ShapeColorContext);
@@ -14,14 +14,14 @@ function ShapeColor() {
 
     function handleShapeColorChange(e) {
         console.log(e.target.value);
-        
+
         let copiedArray = [...shapePropsArray];
         for (const shapeProps of copiedArray) {
             if (shapeProps.uniqueId === shapeInFocusByUniqueId) {
-                shapeProps.style = e.target.value;
+                shapeProps.color = e.target.value;
             }
         }
-        
+
         setShapeColor(e.target.value);
         setShapePropsArray(copiedArray);
     }

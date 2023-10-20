@@ -1,25 +1,24 @@
 import { motion } from 'framer-motion';
-import { useContext, useEffect, useState } from 'react';
-import ShapePropsArrayContext from '../context/ShapePropsArrayContext';
+import { useContext } from 'react';
 import CanvasColorContext from '../context/CanvasColorContext';
 import ShapeInFocusByUniqueIdContext from '../context/ShapeInFocusByUniqueIdContext';
-import ShapeInFocusContext from '../context/ShapeInFocusContext'
+import ShapeInFocusContext from '../context/ShapeInFocusContext';
+import ShapePropsArrayContext from '../context/ShapePropsArrayContext';
 
 function Canvas({ currentVolume }) {
-    const { shapePropsArray, setShapePropsArray } = useContext(
+    const { shapePropsArray } = useContext(
         ShapePropsArrayContext
     );
     const { canvasColor } = useContext(CanvasColorContext);
     const { setShapeInFocusByUniqueId } = useContext(
         ShapeInFocusByUniqueIdContext
     );
-    const { setShapeInFocus } = useContext(ShapeInFocusContext)
+    const { setShapeInFocus } = useContext(ShapeInFocusContext);
 
     // STRETCH: Circular motion
     // STRETCH: Bounce
 
     // TODO: x,y,z origin
-
     // TODO:
     // className maximums: [1, CSS design], [1, reactive], [1, rotation], [1, x-translation], [1, y-translation], [1, scale], [1, fade]
     // toggle classnames with radio buttons to prevent user from selecting more than one
@@ -156,7 +155,11 @@ function Canvas({ currentVolume }) {
                             uniqueId={shapeProps.uniqueId}
                             shapeName={shapeProps.shapeName}
                             className={shapeProps.className}
-                            style={{backgroundColor: shapeProps.style}}
+                            style={{
+                                backgroundColor: shapeProps.color,
+                                height: shapeProps.height,
+                                width: shapeProps.width,
+                            }}
                             initial={shapeProps.initial}
                             animate={shapeProps.animate}
                             transition={shapeProps.transition}

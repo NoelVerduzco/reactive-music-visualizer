@@ -1,13 +1,15 @@
 import { useContext } from 'react';
-import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
-import ShapeInFocusContext from '../../../../context/ShapeInFocusContext';
 import ShapeInFocusByUniqueIdContext from '../../../../context/ShapeInFocusByUniqueIdContext';
+import ShapeInFocusContext from '../../../../context/ShapeInFocusContext';
+import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
 
 function Shape({ shapeName }) {
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
     );
-    const { setShapeInFocusByUniqueId} = useContext(ShapeInFocusByUniqueIdContext)
+    const { setShapeInFocusByUniqueId } = useContext(
+        ShapeInFocusByUniqueIdContext
+    );
     const { setShapeInFocus } = useContext(ShapeInFocusContext);
 
     function makeRandomUniqueId(length) {
@@ -30,13 +32,15 @@ function Shape({ shapeName }) {
             uniqueId: makeRandomUniqueId(6),
             shapeName: shapeName,
             className: 'reactive ' + shapeName,
-            style: '#ffffff',
+            color: '#ffffff',
+            height: 100,
+            width: shapeName === 'square' || shapeName === 'circle' ? 100 : 200,
             initial: {},
             animate: {},
             transition: {},
         };
 
-        setShapeInFocusByUniqueId(shapeProps.uniqueId)
+        setShapeInFocusByUniqueId(shapeProps.uniqueId);
         setShapeInFocus(shapeProps);
         setShapePropsArray([...shapePropsArray, shapeProps]);
     }

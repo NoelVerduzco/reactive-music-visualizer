@@ -1,5 +1,5 @@
-import DataRate from './data-rate/DataRate';
 import CanvasColor from './canvas-color/CanvasColor';
+import DataRate from './data-rate/DataRate';
 
 function GlobalSettings() {
     return (
