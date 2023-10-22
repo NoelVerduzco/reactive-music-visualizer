@@ -14,14 +14,12 @@ function DeleteShape() {
 
     function handleDeleteShapeClick() {
         let copiedArray = [...shapePropsArray];
-        console.log(copiedArray);
 
         for (let i = 0; i < shapePropsArray.length; i++) {
             copiedArray = copiedArray.filter(
                 (shapeProps) => shapeProps.uniqueId != shapeInFocusByUniqueId
             );
         }
-        console.log(copiedArray);
         setShapePropsArray(copiedArray);
         setShapeInFocus(null);
         setShapeInFocusByUniqueId(null);

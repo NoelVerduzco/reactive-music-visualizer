@@ -14,8 +14,6 @@ function ShapeColor() {
     );
 
     function handleShapeColorChange(e) {
-        console.log(e.target.value);
-
         let copiedArray = [...shapePropsArray];
         for (const shapeProps of copiedArray) {
             if (shapeProps.uniqueId === shapeInFocusByUniqueId) {

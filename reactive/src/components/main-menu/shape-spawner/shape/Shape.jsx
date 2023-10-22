@@ -35,6 +35,9 @@ function Shape({ shapeName }) {
             color: '#ffffff',
             height: 100,
             width: shapeName === 'square' || shapeName === 'circle' ? 100 : 200,
+            isFadeEnabled: false,
+            isFadeIn: true,
+            
             initial: {},
             animate: {},
             transition: {},

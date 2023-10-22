@@ -14,13 +14,17 @@ import ShapePropsArrayContext from './context/ShapePropsArrayContext';
 import './App.css';
 
 function App() {
+    // TODO: Convert some global variables to local variables
+    // TODO: Update shape size sliders with current value
+    // TODO: Update shape color picker with current value
+
     // Global state
     const [dataRate, setDataRate] = useState(100);
     const [shapePropsArray, setShapePropsArray] = useState([]);
+    const [shapeInFocus, setShapeInFocus] = useState(null);
+    const [shapeInFocusByUniqueId, setShapeInFocusByUniqueId] = useState(null);
     const [canvasColor, setCanvasColor] = useState('#000000');
     const [shapeColor, setShapeColor] = useState('#000000');
-    const [shapeInFocusByUniqueId, setShapeInFocusByUniqueId] = useState(null);
-    const [shapeInFocus, setShapeInFocus] = useState(null);
 
     // Local state
     const [currentVolume, setCurrentVolume] = useState(0);
@@ -28,10 +32,12 @@ function App() {
 
     useEffect(() => {
         console.log(shapePropsArray)
-    },[shapePropsArray])
+        console.log(shapeInFocus)
+    },[shapeInFocus])
 
     return (
-        <>  <ShapeColorContext.Provider value={{ shapeColor, setShapeColor }}>
+        <>
+            <ShapeColorContext.Provider value={{ shapeColor, setShapeColor }}>
             <ShapeInFocusByUniqueIdContext.Provider value={{ shapeInFocusByUniqueId, setShapeInFocusByUniqueId }}>
             <ShapeInFocusContext.Provider value={{ shapeInFocus, setShapeInFocus }}>
             <CanvasColorContext.Provider value={{ canvasColor, setCanvasColor }}>

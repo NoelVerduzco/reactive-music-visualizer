@@ -5,7 +5,6 @@ function DataRate() {
     const { setDataRate } = useContext(DataRateContext);
 
     function handleDataRateChange(e) {
-        console.log(e.target.value);
         setDataRate(e.target.value);
     }
 

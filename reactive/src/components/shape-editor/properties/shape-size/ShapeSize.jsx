@@ -15,7 +15,6 @@ function ShapeSize() {
     function handleHeightAndWidthChange(e) {
         let copiedArray = [...shapePropsArray];
 
-        console.log(e.target.value);
         for (const shapeProps of copiedArray) {
             if (shapeProps.uniqueId === shapeInFocusByUniqueId) {
                 shapeProps.height = parseInt(e.target.value);
@@ -29,7 +28,6 @@ function ShapeSize() {
     function handleHeightChange(e) {
         let copiedArray = [...shapePropsArray];
 
-        console.log(e.target.value);
         for (const shapeProps of copiedArray) {
             if (shapeProps.uniqueId === shapeInFocusByUniqueId) {
                 shapeProps.height = parseInt(e.target.value);
@@ -42,7 +40,6 @@ function ShapeSize() {
     function handleWidthChange(e) {
         let copiedArray = [...shapePropsArray];
 
-        console.log(e.target.value);
         for (const shapeProps of copiedArray) {
             if (shapeProps.uniqueId === shapeInFocusByUniqueId) {
                 shapeProps.width = parseInt(e.target.value);

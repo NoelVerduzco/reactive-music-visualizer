@@ -5,7 +5,6 @@ function CanvasColor() {
     const { setCanvasColor } = useContext(CanvasColorContext);
 
     function handleCanvasColorChange(e) {
-        console.log(e.target.value);
         setCanvasColor(e.target.value);
     }
 
