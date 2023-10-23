@@ -3,11 +3,14 @@ import { useContext } from 'react';
 import CanvasColorContext from '../context/CanvasColorContext';
 import ShapeInFocusContext from '../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../context/ShapePropsArrayContext';
+import EffectInFocusContext from '../context/EffectInFocusContext';
 
 function Canvas({ currentVolume }) {
     const { shapePropsArray } = useContext(ShapePropsArrayContext);
     const { setShapeInFocus } = useContext(ShapeInFocusContext);
     const { canvasColor } = useContext(CanvasColorContext);
+    const { effectInFocus, setEffectInFocus } =
+    useContext(EffectInFocusContext);
 
     // STRETCH: Circular motion
     // STRETCH: Bounce
@@ -143,6 +146,7 @@ function Canvas({ currentVolume }) {
                             transition={shape.transition}
                             onClick={() => {
                                 setShapeInFocus(shape);
+                                setEffectInFocus(null);
                             }}
                         ></motion.div>
                     );

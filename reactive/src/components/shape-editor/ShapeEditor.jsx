@@ -4,6 +4,7 @@ import ShapeInFocusContext from '../../context/ShapeInFocusContext';
 import DeleteShape from './delete-shape/DeleteShape';
 import EffectsPanel from './effects-panel/EffectsPanel';
 import Properties from './properties/Properties';
+import ReactiveSettings from './reactive-settings/ReactiveSettings';
 
 function ShapeEditor() {
     const { shapeInFocus } = useContext(ShapeInFocusContext);
@@ -20,6 +21,7 @@ function ShapeEditor() {
             <DeleteShape />
             <Properties />
             <EffectsPanel />
+            <ReactiveSettings />
         </>
     );
 }

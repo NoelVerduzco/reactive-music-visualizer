@@ -1,12 +1,15 @@
 import { useContext, useEffect, useState } from 'react';
 import ShapeInFocusContext from '../../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
+import EffectInFocusContext from '../../../../context/EffectInFocusContext';
 
 function Effect({ name, min, max, step }) {
     const { shapeInFocus, setShapeInFocus } = useContext(ShapeInFocusContext);
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
     );
+    const { effectInFocus, setEffectInFocus } =
+        useContext(EffectInFocusContext);
     const [isEnabled, setIsEnabled] = useState(false);
 
     useEffect(() => {
@@ -18,6 +21,14 @@ function Effect({ name, min, max, step }) {
             );
         }
     }, [shapeInFocus]);
+
+    function handleEffectClick() {
+        setEffectInFocus(
+            shapeInFocus.effects.filter(
+                (effect) => effect.effectName === name
+            )[0]
+        );
+    }
 
     function handleEffectToggle() {
         let copiedArray = [...shapePropsArray];
@@ -42,7 +53,7 @@ function Effect({ name, min, max, step }) {
 
     function handleValueChange(e) {
         let copiedArray = [...shapePropsArray];
-        let copiedShape = {...shapeInFocus};
+        let copiedShape = { ...shapeInFocus };
 
         for (let i = 0; i < copiedArray.length; i++) {
             if (copiedArray[i].uniqueId === copiedShape.uniqueId) {
@@ -52,13 +63,14 @@ function Effect({ name, min, max, step }) {
                 copiedArray[i] = copiedShape;
                 setShapeInFocus(copiedShape);
                 setShapePropsArray(copiedArray);
-                console.log(shapeInFocus.effects.filter(
-                    (effect) => effect.effectName === name
-                )[0].value)
+                console.log(
+                    shapeInFocus.effects.filter(
+                        (effect) => effect.effectName === name
+                    )[0].value
+                );
                 break;
             }
         }
-        
     }
 
     return (
@@ -66,7 +78,11 @@ function Effect({ name, min, max, step }) {
             {!shapeInFocus ? (
                 <p>Effect: Waiting</p>
             ) : (
-                <>
+                <div
+                    className="effect-container"
+                    style={{ border: '1px solid red', backgroundColor: !effectInFocus ? "red" : (effectInFocus.effectName === name ? "green" : "red") }}
+                    onClick={handleEffectClick}
+                >
                     <p>{name} Effect Toggler</p>
                     <div className="effect-toggler-container">
                         <button
@@ -97,7 +113,7 @@ function Effect({ name, min, max, step }) {
                             />
                         </div>
                     </div>
-                </>
+                </div>
             )}
         </>
     );

@@ -9,7 +9,7 @@ function DataRate() {
     }
 
     return (
-        <div>
+        <>
             <label htmlFor="data-rate">
                 Data Rate (ms) [1, 400]:
                 <br />
@@ -25,7 +25,7 @@ function DataRate() {
                 defaultValue="100"
                 onChange={(e) => handleDataRateChange(e)}
             />
-        </div>
+        </>
     );
 }
 

@@ -1,12 +1,15 @@
 import { useContext } from 'react';
 import ShapeInFocusContext from '../../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
+import EffectInFocusContext from '../../../../context/EffectInFocusContext';
 
 function Shape({ shapeName }) {
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
     );
     const { setShapeInFocus } = useContext(ShapeInFocusContext);
+    const { effectInFocus, setEffectInFocus } =
+    useContext(EffectInFocusContext);
 
     function makeRandomUniqueId(length) {
         let result = '';
@@ -102,6 +105,7 @@ function Shape({ shapeName }) {
             transition: {},
         };
 
+        setEffectInFocus(null);
         setShapeInFocus(shape);
         setShapePropsArray([...shapePropsArray, shape]);
     }
