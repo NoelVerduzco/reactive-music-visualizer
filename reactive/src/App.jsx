@@ -18,6 +18,9 @@ function App() {
     // TODO: Update shape size sliders with current value
     // TODO: Update shape color picker with current value
 
+    // TODO: Shape "size" can just be a scaling of the original shape
+    // remove shape height and width fields and replace with a scale field
+
     // Global state
     const [dataRate, setDataRate] = useState(100);
     const [shapePropsArray, setShapePropsArray] = useState([]);
