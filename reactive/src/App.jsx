@@ -5,6 +5,7 @@ import Canvas from './components/Canvas';
 import MainMenu from './components/main-menu/MainMenu';
 import ShapeEditor from './components/shape-editor/ShapeEditor';
 import CanvasColorContext from './context/CanvasColorContext';
+import CurrentVolumeContext from './context/CurrentVolumeContext';
 import DataRateContext from './context/DataRateContext';
 import EffectInFocusContext from './context/EffectInFocusContext';
 import ShapeInFocusContext from './context/ShapeInFocusContext';
@@ -13,10 +14,10 @@ import ShapePropsArrayContext from './context/ShapePropsArrayContext';
 import './App.css';
 
 function App() {
-    // TODO: Update shape size sliders with current value
-    // TODO: Update shape color picker with current value
+    // TODO: Update all components to show current values when shape and effect are in focus
 
     // Global state
+    const [currentVolume, setCurrentVolume] = useState(0);
     const [dataRate, setDataRate] = useState(100);
     const [shapePropsArray, setShapePropsArray] = useState([]);
     const [shapeInFocus, setShapeInFocus] = useState(null);
@@ -24,7 +25,6 @@ function App() {
     const [canvasColor, setCanvasColor] = useState('#000000');
 
     // Local state
-    const [currentVolume, setCurrentVolume] = useState(0);
     const [currentSongTime, setCurrentSongTime] = useState(0);
 
     useEffect(() => {
@@ -43,50 +43,57 @@ function App() {
         //     console.log(shapePropsArray[1].effects[0].frequencyBin)
         // }
         // console.log(effectInFocus)
+        if (shapePropsArray.length > 0 ) {
+            console.log(shapePropsArray[0].initial)
+            console.log(shapePropsArray[0].animate)
+        }
     });
 
     return (
         <>
-            <EffectInFocusContext.Provider
-                value={{ effectInFocus, setEffectInFocus }}
+            <CurrentVolumeContext.Provider
+                value={{ currentVolume, setCurrentVolume }}
             >
-                <ShapeInFocusContext.Provider
-                    value={{ shapeInFocus, setShapeInFocus }}
+                <EffectInFocusContext.Provider
+                    value={{ effectInFocus, setEffectInFocus }}
                 >
-                    <CanvasColorContext.Provider
-                        value={{ canvasColor, setCanvasColor }}
+                    <ShapeInFocusContext.Provider
+                        value={{ shapeInFocus, setShapeInFocus }}
                     >
-                        <DataRateContext.Provider
-                            value={{ dataRate, setDataRate }}
+                        <CanvasColorContext.Provider
+                            value={{ canvasColor, setCanvasColor }}
                         >
-                            <ShapePropsArrayContext.Provider
-                                value={{ shapePropsArray, setShapePropsArray }}
+                            <DataRateContext.Provider
+                                value={{ dataRate, setDataRate }}
                             >
-                                <div id="main-components">
-                                    <div>
-                                        <MainMenu />
+                                <ShapePropsArrayContext.Provider
+                                    value={{
+                                        shapePropsArray,
+                                        setShapePropsArray,
+                                    }}
+                                >
+                                    <div id="main-components">
+                                        <div>
+                                            <MainMenu />
+                                        </div>
+                                        <div>
+                                            <AudioAnalyzer
+                                                setCurrentSongTime={
+                                                    setCurrentSongTime
+                                                }
+                                            />
+                                            <Canvas />
+                                        </div>
+                                        <div>
+                                            <ShapeEditor />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <AudioAnalyzer
-                                            setCurrentVolume={setCurrentVolume}
-                                            setCurrentSongTime={
-                                                setCurrentSongTime
-                                            }
-                                        />
-                                        <Canvas
-                                            currentVolume={currentVolume}
-                                            currentSongTime={currentSongTime}
-                                        />
-                                    </div>
-                                    <div>
-                                        <ShapeEditor />
-                                    </div>
-                                </div>
-                            </ShapePropsArrayContext.Provider>
-                        </DataRateContext.Provider>
-                    </CanvasColorContext.Provider>
-                </ShapeInFocusContext.Provider>
-            </EffectInFocusContext.Provider>
+                                </ShapePropsArrayContext.Provider>
+                            </DataRateContext.Provider>
+                        </CanvasColorContext.Provider>
+                    </ShapeInFocusContext.Provider>
+                </EffectInFocusContext.Provider>
+            </CurrentVolumeContext.Provider>
         </>
     );
 }

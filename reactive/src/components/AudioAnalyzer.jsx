@@ -1,9 +1,11 @@
 import AudioMotionAnalyzer from 'audiomotion-analyzer';
 import { useContext, useEffect, useState } from 'react';
+import CurrentVolumeContext from '../context/CurrentVolumeContext';
 import DataRateContext from '../context/DataRateContext';
 
-function AudioAnalyzer({ setCurrentVolume, setCurrentSongTime }) {
+function AudioAnalyzer({ setCurrentSongTime }) {
     const { dataRate } = useContext(DataRateContext);
+    const { setCurrentVolume } = useContext(CurrentVolumeContext);
 
     const [audioElement, setAudioElement] = useState(null);
     const [uploadElement, setUploadElement] = useState(null);
@@ -73,7 +75,7 @@ function AudioAnalyzer({ setCurrentVolume, setCurrentSongTime }) {
 
     const getCurrentVolume = () => {
         // Frequency bins [0 - 60]
-        let frequencyBin = 3;
+        let frequencyBin = 0;
         // Left/Right audio channels [0 - 1]
         let leftRightAudioChannel = 0;
         let volume =

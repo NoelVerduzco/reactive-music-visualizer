@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
+import CurrentVolumeContext from '../../../../context/CurrentVolumeContext';
+import EffectInFocusContext from '../../../../context/EffectInFocusContext';
 import ShapeInFocusContext from '../../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
-import EffectInFocusContext from '../../../../context/EffectInFocusContext';
 
 function Effect({ name, min, max, step }) {
     const { shapeInFocus, setShapeInFocus } = useContext(ShapeInFocusContext);
@@ -10,6 +11,7 @@ function Effect({ name, min, max, step }) {
     );
     const { effectInFocus, setEffectInFocus } =
         useContext(EffectInFocusContext);
+    const { currentVolume } = useContext(CurrentVolumeContext);
     const [isEnabled, setIsEnabled] = useState(false);
 
     useEffect(() => {
@@ -49,6 +51,8 @@ function Effect({ name, min, max, step }) {
                 break;
             }
         }
+
+        updateReactiveProperties(shapeInFocus);
     }
 
     function handleValueChange(e) {
@@ -73,6 +77,126 @@ function Effect({ name, min, max, step }) {
         }
     }
 
+    function updateReactiveProperties(shape) {
+        let { initial } = shape;
+        let { animate } = shape;
+
+        if (shape.className.includes('reactive')) {
+            for (let i = 0; i < shape.effects.length; i++) {
+                if (shape.effects[i].isEnabled) {
+                    if (shape.effects[i].effectName === 'fade') {
+                        const reactiveFadeInitial = {
+                            opacity: 0,
+                        };
+                        initial = { ...initial, ...reactiveFadeInitial };
+
+                        const reactiveFadeAnimate = {
+                            opacity: !currentVolume ? 0 : currentVolume,
+                        };
+                        animate = { ...animate, ...reactiveFadeAnimate };
+                    }
+                    if (shape.effects[i].effectName === 'vertical-shift') {
+                        const reactiveVerticalShiftAnimate = {
+                            y: -100 * currentVolume,
+                        };
+                        animate = {
+                            ...animate,
+                            ...reactiveVerticalShiftAnimate,
+                        };
+                    }
+                    if (shape.effects[i].effectName === 'horizontal-shift') {
+                        const reactiveHorizontalShiftAnimate = {
+                            x: -100 * currentVolume,
+                        };
+                        animate = {
+                            ...animate,
+                            ...reactiveHorizontalShiftAnimate,
+                        };
+                    }
+                    if (shape.effects[i].effectName === 'scale') {
+                        const reactiveScaleInitial = {
+                            scale: 0,
+                        };
+                        initial = { ...initial, ...reactiveScaleInitial };
+
+                        const reactiveScaleAnimate = {
+                            scale: currentVolume,
+                        };
+                        animate = { ...animate, ...reactiveScaleAnimate };
+                    }
+                    if (shape.effects[i].effectName === 'rotate') {
+                        const reactiveRotateAnimate = {
+                            rotate: !currentVolume ? 0 : currentVolume * 360,
+                        };
+                        animate = { ...animate, ...reactiveRotateAnimate };
+                    }
+                } else {
+                    if (shape.effects[i].effectName === 'fade') {
+                        const reactiveFadeInitial = {
+                            opacity: 1,
+                        };
+                        initial = { ...initial, ...reactiveFadeInitial };
+
+                        const reactiveFadeAnimate = {
+                            opacity: 1,
+                        };
+                        animate = { ...animate, ...reactiveFadeAnimate };
+                    }
+                    if (shape.effects[i].effectName === 'vertical-shift') {
+                        const reactiveVerticalShiftAnimate = {
+                            y: 0,
+                        };
+                        animate = {
+                            ...animate,
+                            ...reactiveVerticalShiftAnimate,
+                        };
+                    }
+                    if (shape.effects[i].effectName === 'horizontal-shift') {
+                        const reactiveHorizontalShiftAnimate = {
+                            x: 0,
+                        };
+                        animate = {
+                            ...animate,
+                            ...reactiveHorizontalShiftAnimate,
+                        };
+                    }
+                    if (shape.effects[i].effectName === 'scale') {
+                        const reactiveScaleInitial = {
+                            scale: 1,
+                        };
+                        initial = { ...initial, ...reactiveScaleInitial };
+
+                        const reactiveScaleAnimate = {
+                            scale: 1,
+                        };
+                        animate = { ...animate, ...reactiveScaleAnimate };
+                    }
+                    if (shape.effects[i].effectName === 'rotate') {
+                        const reactiveRotateAnimate = {
+                            rotate: 0,
+                        };
+                        animate = { ...animate, ...reactiveRotateAnimate };
+                    }
+                }
+            }
+        }
+
+        let copiedShape = { ...shape };
+        copiedShape.initial = initial;
+        copiedShape.animate = animate;
+
+        setShapeInFocus(copiedShape);
+
+        let copiedArray = [...shapePropsArray];
+        for (let i = 0; i < copiedArray.length; i++) {
+            if (copiedArray[i].uniqueId === copiedShape.uniqueId) {
+                copiedArray[i] = copiedShape;
+                setShapePropsArray(copiedArray);
+                break;
+            }
+        }
+    }
+
     return (
         <>
             {!shapeInFocus ? (
@@ -80,7 +204,14 @@ function Effect({ name, min, max, step }) {
             ) : (
                 <div
                     className="effect-container"
-                    style={{ border: '1px solid red', backgroundColor: !effectInFocus ? "red" : (effectInFocus.effectName === name ? "green" : "red") }}
+                    style={{
+                        border: '1px solid red',
+                        backgroundColor: !effectInFocus
+                            ? 'red'
+                            : effectInFocus.effectName === name
+                            ? 'green'
+                            : 'red',
+                    }}
                     onClick={handleEffectClick}
                 >
                     <p>{name} Effect Toggler</p>
