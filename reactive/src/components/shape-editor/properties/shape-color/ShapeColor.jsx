@@ -1,41 +1,45 @@
 import { useContext } from 'react';
-import ShapeColorContext from '../../../../context/ShapeColorContext';
-import ShapeInFocusByUniqueIdContext from '../../../../context/ShapeInFocusByUniqueIdContext';
+import ShapeInFocusContext from '../../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
 
 function ShapeColor() {
-    // TODO: ShapeColorContext may not be necessary
-    const { setShapeColor } = useContext(ShapeColorContext);
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
     );
-    const { shapeInFocusByUniqueId } = useContext(
-        ShapeInFocusByUniqueIdContext
-    );
+    const { shapeInFocus, setShapeInFocus } = useContext(ShapeInFocusContext);
 
     function handleShapeColorChange(e) {
         let copiedArray = [...shapePropsArray];
-        for (const shapeProps of copiedArray) {
-            if (shapeProps.uniqueId === shapeInFocusByUniqueId) {
-                shapeProps.color = e.target.value;
+        let copiedShape = { ...shapeInFocus };
+
+        for (let i = 0; i < copiedArray.length; i++) {
+            if (copiedArray[i].uniqueId === copiedShape.uniqueId) {
+                copiedShape.color = e.target.value;
+                copiedArray[i] = copiedShape;
+                setShapeInFocus(copiedShape);
+                setShapePropsArray(copiedArray);
+                break;
             }
         }
-
-        setShapeColor(e.target.value);
-        setShapePropsArray(copiedArray);
     }
 
     return (
-        <div>
-            <label htmlFor="shape-color">Shape color: </label>
-            <input
-                type="color"
-                id="shape-color"
-                name="shape-color"
-                defaultValue="#000000"
-                onChange={(e) => handleShapeColorChange(e)}
-            />
-        </div>
+        <>
+            {!shapeInFocus ? (
+                <p>Shape Color: Waiting</p>
+            ) : (
+                <div>
+                    <label htmlFor="shape-color">Shape color: </label>
+                    <input
+                        type="color"
+                        id="shape-color"
+                        name="shape-color"
+                        defaultValue={shapeInFocus.color}
+                        onChange={(e) => handleShapeColorChange(e)}
+                    />
+                </div>
+            )}
+        </>
     );
 }
 

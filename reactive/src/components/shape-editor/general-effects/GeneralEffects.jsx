@@ -1,10 +1,10 @@
-import FadeEffectToggler from "./effect-toggler/FadeEffectToggler";
+// import FadeEffectToggler from "./effect-toggler/FadeEffectToggler";
 
 function GeneralEffects() {
     return (
         <>
             <p>General Effects</p>
-            <FadeEffectToggler />
+            {/* <FadeEffectToggler /> */}
         </>
     );
 }

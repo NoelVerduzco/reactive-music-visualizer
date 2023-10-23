@@ -1,16 +1,13 @@
 import { motion } from 'framer-motion';
 import { useContext } from 'react';
 import CanvasColorContext from '../context/CanvasColorContext';
-import ShapeInFocusByUniqueIdContext from '../context/ShapeInFocusByUniqueIdContext';
 import ShapeInFocusContext from '../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../context/ShapePropsArrayContext';
 
 function Canvas({ currentVolume }) {
     const { shapePropsArray } = useContext(ShapePropsArrayContext);
     const { canvasColor } = useContext(CanvasColorContext);
-    const { setShapeInFocusByUniqueId } = useContext(
-        ShapeInFocusByUniqueIdContext
-    );
+
     const { setShapeInFocus } = useContext(ShapeInFocusContext);
 
     // STRETCH: Circular motion
@@ -18,14 +15,14 @@ function Canvas({ currentVolume }) {
 
     // TODO: x,y,z origin
     // TODO: Update this method based upon diagram
-    function addReactivePropsToShapeProps(shapeProps) {
-        const { id } = shapeProps;
-        const { className } = shapeProps;
-        let { initial } = shapeProps;
-        let { animate } = className.includes('reactive') ? {} : shapeProps;
+    function addReactivePropsToShapeProps(shape) {
+        const { id } = shape;
+        const { className } = shape;
+        let { initial } = shape;
+        let { animate } = className.includes('reactive') ? {} : shape;
         let { transition } = className.includes('spring')
             ? { type: 'spring', stiffness: 500, damping: 25 }
-            : shapeProps;
+            : shape;
 
         if (className.includes('reactive')) {
             if (className.includes('rotate-cw')) {
@@ -128,23 +125,25 @@ function Canvas({ currentVolume }) {
             {shapePropsArray.length === 0 ? (
                 <h1>Click on a shape to get started!</h1>
             ) : (
-                shapePropsArray.map((shapeProps) => {
+                shapePropsArray.map((shape) => {
                     return (
                         <motion.div
-                            uniqueId={shapeProps.uniqueId}
-                            shapeName={shapeProps.shapeName}
-                            className={shapeProps.className}
+                            shapeId={shape.shapeId}
+                            uniqueId={shape.uniqueId}
+                            shapeName={shape.shapeName}
+                            className={shape.className}
                             style={{
-                                backgroundColor: shapeProps.color,
-                                height: shapeProps.height,
-                                width: shapeProps.width,
+                                backgroundColor: shape.color,
+                                scale: shape.size,
                             }}
-                            initial={shapeProps.initial}
-                            animate={shapeProps.animate}
-                            transition={shapeProps.transition}
+                            xPosition={shape.xPosition}
+                            yPosition={shape.yPosition}
+                            effects={shape.effects}
+                            initial={shape.initial}
+                            animate={shape.animate}
+                            transition={shape.transition}
                             onClick={() => {
-                                setShapeInFocusByUniqueId(shapeProps.uniqueId);
-                                setShapeInFocus(shapeProps);
+                                setShapeInFocus(shape);
                             }}
                         ></motion.div>
                     );

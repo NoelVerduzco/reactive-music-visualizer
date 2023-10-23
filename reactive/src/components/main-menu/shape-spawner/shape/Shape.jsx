@@ -1,14 +1,10 @@
 import { useContext } from 'react';
-import ShapeInFocusByUniqueIdContext from '../../../../context/ShapeInFocusByUniqueIdContext';
 import ShapeInFocusContext from '../../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
 
 function Shape({ shapeName }) {
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
-    );
-    const { setShapeInFocusByUniqueId } = useContext(
-        ShapeInFocusByUniqueIdContext
     );
     const { setShapeInFocus } = useContext(ShapeInFocusContext);
 
@@ -28,24 +24,86 @@ function Shape({ shapeName }) {
     }
 
     function handleCreateShapeClick(shapeName) {
-        const shapeProps = {
-            uniqueId: makeRandomUniqueId(6),
+        // value ranges [0,1]
+        const fadeEffect = {
+            effectId: 0,
+            uniqueId: makeRandomUniqueId(8),
+            effectName: 'fade',
+            isEnabled: false,
+            value: 0.5,
+            isRightChannel: false,
+            frequencyBin: 0,
+        };
+
+        // value ranges [-N,N]
+        const verticalShiftEffect = {
+            effectId: 0,
+            uniqueId: makeRandomUniqueId(8),
+            effectName: 'vertical-shift',
+            isEnabled: false,
+            value: 0,
+            isRightChannel: false,
+            frequencyBin: 0,
+        };
+
+        // value ranges [-N,N]
+        const horizontalShiftEffect = {
+            effectId: 0,
+            uniqueId: makeRandomUniqueId(8),
+            effectName: 'horizontal-shift',
+            isEnabled: false,
+            value: 0,
+            isRightChannel: false,
+            frequencyBin: 0,
+        };
+
+        // value ranges [0,1]
+        const scaleEffect = {
+            effectId: 0,
+            uniqueId: makeRandomUniqueId(8),
+            effectName: 'scale',
+            isEnabled: false,
+            value: 0,
+            isRightChannel: false,
+            frequencyBin: 0,
+        };
+
+        // value ranges [-720,720]
+        const rotateEffect = {
+            effectId: 0,
+            uniqueId: makeRandomUniqueId(8),
+            effectName: 'rotate',
+            isEnabled: false,
+            value: 0,
+            isRightChannel: false,
+            frequencyBin: 0,
+        };
+
+        const effects = [
+            fadeEffect,
+            verticalShiftEffect,
+            horizontalShiftEffect,
+            scaleEffect,
+            rotateEffect,
+        ];
+
+        const shape = {
+            shapeId: 0,
+            uniqueId: makeRandomUniqueId(8),
             shapeName: shapeName,
             className: 'reactive ' + shapeName,
             color: '#ffffff',
-            height: 100,
-            width: shapeName === 'square' || shapeName === 'circle' ? 100 : 200,
-            isFadeEnabled: false,
-            isFadeIn: true,
-            
+            size: 1,
+            xPosition: 0,
+            yPosition: 0,
+            effects: effects,
             initial: {},
             animate: {},
             transition: {},
         };
 
-        setShapeInFocusByUniqueId(shapeProps.uniqueId);
-        setShapeInFocus(shapeProps);
-        setShapePropsArray([...shapePropsArray, shapeProps]);
+        setShapeInFocus(shape);
+        setShapePropsArray([...shapePropsArray, shape]);
     }
 
     return (

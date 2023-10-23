@@ -1,5 +1,5 @@
-import ShapeColor from "./shape-color/ShapeColor";
-import ShapeSize from "./shape-size/ShapeSize";
+import ShapeColor from './shape-color/ShapeColor';
+import ShapeSize from './shape-size/ShapeSize';
 
 function Properties() {
     return (

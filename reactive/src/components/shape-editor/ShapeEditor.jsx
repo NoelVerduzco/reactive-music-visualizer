@@ -2,8 +2,8 @@ import { useContext } from 'react';
 
 import ShapeInFocusContext from '../../context/ShapeInFocusContext';
 import DeleteShape from './delete-shape/DeleteShape';
-import Properties from './properties/Properties';
 import GeneralEffects from './general-effects/GeneralEffects';
+import Properties from './properties/Properties';
 
 function ShapeEditor() {
     const { shapeInFocus } = useContext(ShapeInFocusContext);
@@ -11,15 +11,15 @@ function ShapeEditor() {
     return (
         <>
             <h1>
-                Shape:{' '}
+                Shape:
                 {!shapeInFocus
-                    ? 'None'
+                    ? 'Waiting'
                     : shapeInFocus.shapeName.charAt(0).toUpperCase() +
                       shapeInFocus.shapeName.slice(1)}
             </h1>
             <DeleteShape />
             <Properties />
-            <GeneralEffects />
+            {/* <GeneralEffects /> */}
         </>
     );
 }

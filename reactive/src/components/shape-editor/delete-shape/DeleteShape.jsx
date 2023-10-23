@@ -1,28 +1,23 @@
 import { useContext } from 'react';
-import ShapeInFocusByUniqueIdContext from '../../../context/ShapeInFocusByUniqueIdContext';
 import ShapeInFocusContext from '../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../context/ShapePropsArrayContext';
 
 function DeleteShape() {
-    const { shapeInFocusByUniqueId, setShapeInFocusByUniqueId } = useContext(
-        ShapeInFocusByUniqueIdContext
-    );
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
     );
-    const { setShapeInFocus } = useContext(ShapeInFocusContext);
+    const { shapeInFocus, setShapeInFocus } = useContext(ShapeInFocusContext);
 
     function handleDeleteShapeClick() {
         let copiedArray = [...shapePropsArray];
+        let copiedShape = { ...shapeInFocus };
 
-        for (let i = 0; i < shapePropsArray.length; i++) {
-            copiedArray = copiedArray.filter(
-                (shapeProps) => shapeProps.uniqueId != shapeInFocusByUniqueId
-            );
-        }
+        copiedArray = copiedArray.filter(
+            (shape) => shape.uniqueId != copiedShape.uniqueId
+        );
+
         setShapePropsArray(copiedArray);
         setShapeInFocus(null);
-        setShapeInFocusByUniqueId(null);
     }
 
     return (
