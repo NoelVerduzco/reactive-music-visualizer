@@ -21,13 +21,19 @@ function DeleteShape() {
     }
 
     return (
-        <button
-            id="delete-shape"
-            type="button"
-            onClick={handleDeleteShapeClick}
-        >
-            Delete Shape
-        </button>
+        <>
+            {!shapeInFocus ? (
+                <p>Delete Shape Button: Waiting</p>
+            ) : (
+                <button
+                    id="delete-shape"
+                    type="button"
+                    onClick={handleDeleteShapeClick}
+                >
+                    Delete Shape
+                </button>
+            )}
+        </>
     );
 }
 

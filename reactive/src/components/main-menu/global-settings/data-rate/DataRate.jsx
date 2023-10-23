@@ -11,7 +11,7 @@ function DataRate() {
     return (
         <div>
             <label htmlFor="data-rate">
-                Data Rate (ms) [1-400]:
+                Data Rate (ms) [1, 400]:
                 <br />
                 Higher = Less Reactive Shapes
                 <br />

@@ -24,12 +24,12 @@ function ShapeSize() {
     }
 
     return (
-        <div className="shape-size-slider">
+        <div className="shape-size-container">
             {!shapeInFocus ? (
                 <p>Shape Size: Waiting</p>
             ) : (
                 <>
-                    <label htmlFor="shape-size-height-width">Shape Size:</label>
+                    <label htmlFor="shape-size-slider">Shape Size:</label>
                     <input
                         type="range"
                         step="0.1"

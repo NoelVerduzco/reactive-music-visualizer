@@ -63,7 +63,7 @@ function Shape({ shapeName }) {
             uniqueId: makeRandomUniqueId(8),
             effectName: 'scale',
             isEnabled: false,
-            value: 0,
+            value: 0.5,
             isRightChannel: false,
             frequencyBin: 0,
         };

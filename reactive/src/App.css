@@ -64,6 +64,10 @@ body {
     border-radius: 100px / 50px;
 }
 
+.canvas-shape {
+    position: absolute;
+}
+
 .effect-toggler-container {
     display: flex;
     align-items: center;

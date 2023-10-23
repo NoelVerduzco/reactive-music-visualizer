@@ -12,20 +12,20 @@
 //         ShapePropsArrayContext
 //     );
 
-//     function handleGeneralEffectToggle() {
-//         let copiedShape = { ...shapeInFocus };
-//         copiedShape.isFadeEnabled = copiedShape.isFadeEnabled ? false : true;
+    // function handleGeneralEffectToggle() {
+    //     let copiedShape = { ...shapeInFocus };
+    //     copiedShape.isFadeEnabled = copiedShape.isFadeEnabled ? false : true;
 
-//         let copiedArray = [...shapePropsArray];
+    //     let copiedArray = [...shapePropsArray];
 
-//         for (let i = 0; i < copiedArray.length; i++) {
-//             if (copiedArray[i].uniqueId === shapeInFocusByUniqueId) {
-//                 copiedArray[i] = copiedShape;
-//                 setShapeInFocus(copiedShape);
-//                 setShapePropsArray(copiedArray);
-//             }
-//         }
-//     }
+    //     for (let i = 0; i < copiedArray.length; i++) {
+    //         if (copiedArray[i].uniqueId === shapeInFocusByUniqueId) {
+    //             copiedArray[i] = copiedShape;
+    //             setShapeInFocus(copiedShape);
+    //             setShapePropsArray(copiedArray);
+    //         }
+    //     }
+    // }
 
 //     function handleSpecificEffectClick(boolean) {
 //         let copiedShape = { ...shapeInFocus };
@@ -48,17 +48,17 @@
 //                 <p>Fade Effect: Waiting for shape to be in focus</p>
 //             ) : (
 //                 <>
-//                     <p>Fade Effect Toggler</p>
-//                     <div className="effect-toggler-container">
-//                         <button
-//                             className="general-effect-toggler-button"
-//                             onClick={handleGeneralEffectToggle}
-//                             style={
-//                                 shapeInFocus.isFadeEnabled
-//                                     ? { backgroundColor: 'green' }
-//                                     : { backgroundColor: 'red' }
-//                             }
-//                         ></button>
+                    // <p>Fade Effect Toggler</p>
+                    // <div className="effect-toggler-container">
+                    //     <button
+                    //         className="general-effect-toggler-button"
+                    //         onClick={handleGeneralEffectToggle}
+                    //         style={
+                    //             shapeInFocus.isFadeEnabled
+                    //                 ? { backgroundColor: 'green' }
+                    //                 : { backgroundColor: 'red' }
+                    //         }
+                    //     ></button>
 //                         <div className="specific-effect-toggler-container">
 //                             <div className="specific-effect-toggler">
 //                                 <p>Fade In</p>

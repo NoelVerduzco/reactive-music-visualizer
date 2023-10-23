@@ -26,10 +26,13 @@ function App() {
     const [currentSongTime, setCurrentSongTime] = useState(0);
 
     useEffect(() => {
-        console.log(shapePropsArray);
-        console.log(shapeInFocus);
-        console.log(dataRate);
-        console.log(canvasColor);
+        // console.log(shapePropsArray);
+        // console.log(shapeInFocus);
+        // console.log(dataRate);
+        // console.log(canvasColor);
+        // if (shapeInFocus) {
+        //     console.log(shapeInFocus.effects.filter((effect) => effect.effectName === 'rotate')[0].isEnabled)
+        // }
     });
 
     return (

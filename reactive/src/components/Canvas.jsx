@@ -6,9 +6,8 @@ import ShapePropsArrayContext from '../context/ShapePropsArrayContext';
 
 function Canvas({ currentVolume }) {
     const { shapePropsArray } = useContext(ShapePropsArrayContext);
-    const { canvasColor } = useContext(CanvasColorContext);
-
     const { setShapeInFocus } = useContext(ShapeInFocusContext);
+    const { canvasColor } = useContext(CanvasColorContext);
 
     // STRETCH: Circular motion
     // STRETCH: Bounce
@@ -131,7 +130,7 @@ function Canvas({ currentVolume }) {
                             shapeId={shape.shapeId}
                             uniqueId={shape.uniqueId}
                             shapeName={shape.shapeName}
-                            className={shape.className}
+                            className={'canvas-shape ' + shape.className}
                             style={{
                                 backgroundColor: shape.color,
                                 scale: shape.size,

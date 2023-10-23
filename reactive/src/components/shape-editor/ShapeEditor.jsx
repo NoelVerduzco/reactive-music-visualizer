@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import ShapeInFocusContext from '../../context/ShapeInFocusContext';
 import DeleteShape from './delete-shape/DeleteShape';
-import GeneralEffects from './general-effects/GeneralEffects';
+import EffectsPanel from './effects-panel/EffectsPanel';
 import Properties from './properties/Properties';
 
 function ShapeEditor() {
@@ -11,7 +11,7 @@ function ShapeEditor() {
     return (
         <>
             <h1>
-                Shape:
+                Shape:{' '}
                 {!shapeInFocus
                     ? 'Waiting'
                     : shapeInFocus.shapeName.charAt(0).toUpperCase() +
@@ -19,7 +19,7 @@ function ShapeEditor() {
             </h1>
             <DeleteShape />
             <Properties />
-            {/* <GeneralEffects /> */}
+            <EffectsPanel />
         </>
     );
 }
