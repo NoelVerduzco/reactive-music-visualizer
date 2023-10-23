@@ -15,6 +15,8 @@ function Canvas() {
     // STRETCH: Bounce
     // TODO: x,y,z origin
 
+    
+
     return (
         <div id="canvas" style={{ backgroundColor: canvasColor }}>
             {shapePropsArray.length === 0 ? (

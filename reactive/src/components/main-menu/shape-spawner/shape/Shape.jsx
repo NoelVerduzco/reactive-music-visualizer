@@ -96,7 +96,6 @@ function Shape({ shapeName }) {
             shapeName: shapeName,
             className: 'reactive ' + shapeName,
             color: '#ffffff',
-            size: 1,
             xPosition: 0,
             yPosition: 0,
             effects: effects,
