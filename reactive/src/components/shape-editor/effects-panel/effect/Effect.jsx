@@ -15,6 +15,16 @@ function Effect({ name, min, max, step }) {
     const [isEnabled, setIsEnabled] = useState(false);
 
     useEffect(() => {
+        if (shapePropsArray.length > 0) {
+            let copiedArray = [...shapePropsArray];
+            for (let i = 0; i < copiedArray.length; i++) {
+                copiedArray[i] = refreshReactiveProperties(copiedArray[i]);
+            }
+            setShapePropsArray(copiedArray);
+        }
+    }, [currentVolume]);
+
+    useEffect(() => {
         if (shapeInFocus) {
             setIsEnabled(
                 shapeInFocus.effects.filter(
@@ -51,8 +61,6 @@ function Effect({ name, min, max, step }) {
                 break;
             }
         }
-
-        updateReactiveProperties(shapeInFocus);
     }
 
     function handleValueChange(e) {
@@ -77,9 +85,9 @@ function Effect({ name, min, max, step }) {
         }
     }
 
-    function updateReactiveProperties(shape) {
-        let { initial } = shape;
-        let { animate } = shape;
+    function refreshReactiveProperties(shape) {
+        let initial = {};
+        let animate = {};
 
         if (shape.className.includes('reactive')) {
             for (let i = 0; i < shape.effects.length; i++) {
@@ -91,13 +99,22 @@ function Effect({ name, min, max, step }) {
                         initial = { ...initial, ...reactiveFadeInitial };
 
                         const reactiveFadeAnimate = {
-                            opacity: !currentVolume ? 0 : currentVolume,
+                            opacity: !currentVolume
+                                ? 0
+                                : currentVolume[shape.effects[i].frequencyBin]
+                                      .value[
+                                      shape.effects[i].isRightChannel ? 1 : 0
+                                  ] * shape.effects[i].value,
                         };
                         animate = { ...animate, ...reactiveFadeAnimate };
                     }
                     if (shape.effects[i].effectName === 'vertical-shift') {
                         const reactiveVerticalShiftAnimate = {
-                            y: -100 * currentVolume,
+                            y:
+                                currentVolume[shape.effects[i].frequencyBin]
+                                    .value[
+                                    shape.effects[i].isRightChannel ? 1 : 0
+                                ] * shape.effects[i].value,
                         };
                         animate = {
                             ...animate,
@@ -106,7 +123,11 @@ function Effect({ name, min, max, step }) {
                     }
                     if (shape.effects[i].effectName === 'horizontal-shift') {
                         const reactiveHorizontalShiftAnimate = {
-                            x: -100 * currentVolume,
+                            x:
+                                currentVolume[shape.effects[i].frequencyBin]
+                                    .value[
+                                    shape.effects[i].isRightChannel ? 1 : 0
+                                ] * shape.effects[i].value,
                         };
                         animate = {
                             ...animate,
@@ -120,13 +141,22 @@ function Effect({ name, min, max, step }) {
                         initial = { ...initial, ...reactiveScaleInitial };
 
                         const reactiveScaleAnimate = {
-                            scale: currentVolume,
+                            scale:
+                                currentVolume[shape.effects[i].frequencyBin]
+                                    .value[
+                                    shape.effects[i].isRightChannel ? 1 : 0
+                                ] * shape.effects[i].value,
                         };
                         animate = { ...animate, ...reactiveScaleAnimate };
                     }
                     if (shape.effects[i].effectName === 'rotate') {
                         const reactiveRotateAnimate = {
-                            rotate: !currentVolume ? 0 : currentVolume * 360,
+                            rotate: !currentVolume
+                                ? 0
+                                : currentVolume[shape.effects[i].frequencyBin]
+                                      .value[
+                                      shape.effects[i].isRightChannel ? 1 : 0
+                                  ] * shape.effects[i].value,
                         };
                         animate = { ...animate, ...reactiveRotateAnimate };
                     }
@@ -184,17 +214,7 @@ function Effect({ name, min, max, step }) {
         let copiedShape = { ...shape };
         copiedShape.initial = initial;
         copiedShape.animate = animate;
-
-        setShapeInFocus(copiedShape);
-
-        let copiedArray = [...shapePropsArray];
-        for (let i = 0; i < copiedArray.length; i++) {
-            if (copiedArray[i].uniqueId === copiedShape.uniqueId) {
-                copiedArray[i] = copiedShape;
-                setShapePropsArray(copiedArray);
-                break;
-            }
-        }
+        return copiedShape;
     }
 
     return (
@@ -234,6 +254,11 @@ function Effect({ name, min, max, step }) {
                                 step={step}
                                 min={min}
                                 max={max}
+                                value={
+                                    shapeInFocus.effects.filter(
+                                        (effect) => effect.effectName === name
+                                    )[0].value
+                                }
                                 defaultValue={
                                     shapeInFocus.effects.filter(
                                         (effect) => effect.effectName === name

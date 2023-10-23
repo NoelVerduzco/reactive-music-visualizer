@@ -55,7 +55,8 @@ function FrequencyBin() {
                         name="frequency-bin"
                         min="1"
                         max="61"
-                        defaultValue="1"
+                        defaultValue={effectInFocus.frequencyBin + 1}
+                        value={effectInFocus.frequencyBin + 1}
                         onChange={(e) => handleFrequencyBinChange(e)}
                     />
                 </>

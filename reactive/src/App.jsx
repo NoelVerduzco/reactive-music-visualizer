@@ -15,6 +15,10 @@ import './App.css';
 
 function App() {
     // TODO: Update all components to show current values when shape and effect are in focus
+    // TODO: Create more shapes with different sizes
+    // TODO: SET XPOSITION AND YPOSITION OF SHAPES ON CANVAS
+    // TODO: CHANGE ANALYZER MODE TO HAVE LESS COLUMNS
+    
 
     // Global state
     const [currentVolume, setCurrentVolume] = useState(0);
@@ -24,29 +28,9 @@ function App() {
     const [effectInFocus, setEffectInFocus] = useState(null);
     const [canvasColor, setCanvasColor] = useState('#000000');
 
-    // Local state
-    const [currentSongTime, setCurrentSongTime] = useState(0);
-
+    // Check state values
     useEffect(() => {
-        // console.log(shapePropsArray);
-        // console.log(shapeInFocus);
-        // console.log(dataRate);
-        // console.log(canvasColor);
-        // if (shapeInFocus) {
-        //     console.log(shapeInFocus.effects.filter((effect) => effect.effectName === 'rotate')[0].isEnabled)
-        // }
-        // if(shapePropsArray.length > 0){
-        //     console.log(shapePropsArray[0].effects[0].isRightChannel)
-        // }
-        // if(shapePropsArray.length > 0){
-        //     console.log(shapePropsArray[0].effects[0].frequencyBin)
-        //     console.log(shapePropsArray[1].effects[0].frequencyBin)
-        // }
-        // console.log(effectInFocus)
-        if (shapePropsArray.length > 0 ) {
-            console.log(shapePropsArray[0].initial)
-            console.log(shapePropsArray[0].animate)
-        }
+        console.log("STATE VALUES")
     });
 
     return (
@@ -77,11 +61,7 @@ function App() {
                                             <MainMenu />
                                         </div>
                                         <div>
-                                            <AudioAnalyzer
-                                                setCurrentSongTime={
-                                                    setCurrentSongTime
-                                                }
-                                            />
+                                            <AudioAnalyzer />
                                             <Canvas />
                                         </div>
                                         <div>

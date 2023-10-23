@@ -5,7 +5,7 @@ function Properties() {
     return (
         <>
             <ShapeColor />
-            <ShapeSize />
+            {/* <ShapeSize /> */}
         </>
     );
 }

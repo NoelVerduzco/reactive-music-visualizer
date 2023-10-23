@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import CurrentVolumeContext from '../context/CurrentVolumeContext';
 import DataRateContext from '../context/DataRateContext';
 
-function AudioAnalyzer({ setCurrentSongTime }) {
+function AudioAnalyzer() {
     const { dataRate } = useContext(DataRateContext);
     const { setCurrentVolume } = useContext(CurrentVolumeContext);
 
@@ -42,7 +42,7 @@ function AudioAnalyzer({ setCurrentSongTime }) {
                     source: audioElement,
                     height: 1080,
                     width: 1920,
-                    mode: 5,
+                    mode: 4,
                     gradient: 'prism',
                     channelLayout: 'dual-vertical',
                     barSpace: 0.5,
@@ -62,30 +62,14 @@ function AudioAnalyzer({ setCurrentSongTime }) {
                 () => getCurrentVolume(),
                 dataRate
             );
-            const currentTimeId = setInterval(
-                () => getCurrentSongTime(),
-                dataRate
-            );
             return () => {
                 clearInterval(currentVolumeId);
-                clearInterval(currentTimeId);
             };
         }
     }, [isPlaying]);
 
     const getCurrentVolume = () => {
-        // Frequency bins [0 - 60]
-        let frequencyBin = 0;
-        // Left/Right audio channels [0 - 1]
-        let leftRightAudioChannel = 0;
-        let volume =
-            audioMotion.getBars()[frequencyBin].value[leftRightAudioChannel];
-        setCurrentVolume(volume);
-    };
-
-    const getCurrentSongTime = () => {
-        let songTime = audioElement.currentTime;
-        setCurrentSongTime(songTime);
+        setCurrentVolume(audioMotion.getBars())
     };
 
     return (

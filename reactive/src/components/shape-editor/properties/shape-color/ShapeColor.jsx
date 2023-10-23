@@ -34,6 +34,7 @@ function ShapeColor() {
                         type="color"
                         id="shape-color"
                         name="shape-color"
+                        value={shapeInFocus.color}
                         defaultValue={shapeInFocus.color}
                         onChange={(e) => handleShapeColorChange(e)}
                     />
