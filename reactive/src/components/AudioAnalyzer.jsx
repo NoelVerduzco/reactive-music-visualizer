@@ -42,7 +42,7 @@ function AudioAnalyzer() {
                     source: audioElement,
                     height: 1080,
                     width: 1920,
-                    mode: 4,
+                    mode: 6, // mode 6 provides 31 frequency bins
                     gradient: 'prism',
                     channelLayout: 'dual-vertical',
                     barSpace: 0.5,

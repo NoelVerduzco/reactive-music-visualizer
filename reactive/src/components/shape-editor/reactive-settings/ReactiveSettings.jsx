@@ -6,7 +6,7 @@ function ReactiveSettings() {
         <>
             <h1>Reactive Settings</h1>
             <AudioChannel />
-            <FrequencyBin />
+            <FrequencyBin min={1} max={31} />
         </>
     );
 }

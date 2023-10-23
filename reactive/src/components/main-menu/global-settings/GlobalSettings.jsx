@@ -5,7 +5,7 @@ function GlobalSettings() {
     return (
         <div>
             <h1>Global Settings</h1>
-            <DataRate />
+            <DataRate min={10} max={250} />
             <CanvasColor />
         </div>
     );

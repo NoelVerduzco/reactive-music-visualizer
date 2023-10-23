@@ -14,11 +14,9 @@ import ShapePropsArrayContext from './context/ShapePropsArrayContext';
 import './App.css';
 
 function App() {
-    // TODO: Update all components to show current values when shape and effect are in focus
+    // TODO: Update canvasColor and dateRate to show current values when template is loaded
     // TODO: Create more shapes with different sizes
     // TODO: SET XPOSITION AND YPOSITION OF SHAPES ON CANVAS
-    // TODO: CHANGE ANALYZER MODE TO HAVE LESS COLUMNS
-    
 
     // Global state
     const [currentVolume, setCurrentVolume] = useState(0);

@@ -3,7 +3,7 @@ import ShapeInFocusContext from '../../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
 import EffectInFocusContext from '../../../../context/EffectInFocusContext';
 
-function FrequencyBin() {
+function FrequencyBin({min, max}) {
     const { shapeInFocus, setShapeInFocus } = useContext(ShapeInFocusContext);
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
@@ -13,6 +13,7 @@ function FrequencyBin() {
 
     function handleFrequencyBinChange(e) {
         if (!effectInFocus) return;
+        if (e.target.value > max || e.target.value < min) return;
 
         let copiedEffect = { ...effectInFocus };
         copiedEffect.frequencyBin = e.target.value - 1;
@@ -44,7 +45,7 @@ function FrequencyBin() {
             ) : (
                 <>
                     <label htmlFor="frequency-bin">
-                        Frequency Bin [1, 61]:
+                        Frequency Bin [{min}, {max}]:
                         <br />
                         Each analyzer column is a bin
                         <br />
@@ -53,8 +54,8 @@ function FrequencyBin() {
                         type="number"
                         id="frequency-bin"
                         name="frequency-bin"
-                        min="1"
-                        max="61"
+                        min={min}
+                        max={max}
                         defaultValue={effectInFocus.frequencyBin + 1}
                         value={effectInFocus.frequencyBin + 1}
                         onChange={(e) => handleFrequencyBinChange(e)}
