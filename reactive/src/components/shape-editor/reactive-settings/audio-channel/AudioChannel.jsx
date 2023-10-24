@@ -1,7 +1,7 @@
 import { useContext } from 'react';
+import EffectInFocusContext from '../../../../context/EffectInFocusContext';
 import ShapeInFocusContext from '../../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
-import EffectInFocusContext from '../../../../context/EffectInFocusContext';
 
 function AudioChannel() {
     const { shapeInFocus, setShapeInFocus } = useContext(ShapeInFocusContext);
@@ -40,20 +40,20 @@ function AudioChannel() {
     return (
         <>
             {!shapeInFocus || !effectInFocus ? (
-                <p>Audio Channel: Waiting</p>
+                <h6>Audio Channel: Waiting</h6>
             ) : (
                 <>
-                    <p>Audio Channel</p>
+                    <h6>Audio Channel</h6>
                     <div className="audio-channel-buttons-container">
                         <button
                             id="left-channel-button"
                             onClick={() => handleAudioChannelClick(false)}
                             style={{
                                 backgroundColor: !effectInFocus
-                                    ? 'grey'
+                                    ? '#484848'
                                     : effectInFocus.isRightChannel
-                                    ? 'grey'
-                                    : 'blue',
+                                    ? '#484848'
+                                    : '#2a9fd6',
                             }}
                         >
                             Left
@@ -63,10 +63,10 @@ function AudioChannel() {
                             onClick={() => handleAudioChannelClick(true)}
                             style={{
                                 backgroundColor: !effectInFocus
-                                    ? 'grey'
+                                    ? '#484848'
                                     : effectInFocus.isRightChannel
-                                    ? 'blue'
-                                    : 'grey',
+                                    ? '#2a9fd6'
+                                    : '#484848',
                             }}
                         >
                             Right

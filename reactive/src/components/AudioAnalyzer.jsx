@@ -40,8 +40,8 @@ function AudioAnalyzer() {
                 // Instantiate the audio analyzer
                 new AudioMotionAnalyzer(document.getElementById('container'), {
                     source: audioElement,
-                    height: 1080,
-                    width: 1920,
+                    height: 800,
+                    width: 1800,
                     mode: 6, // mode 6 provides 31 frequency bins
                     gradient: 'prism',
                     channelLayout: 'dual-vertical',
@@ -69,14 +69,11 @@ function AudioAnalyzer() {
     }, [isPlaying]);
 
     const getCurrentVolume = () => {
-        setCurrentVolume(audioMotion.getBars())
+        setCurrentVolume(audioMotion.getBars());
     };
 
     return (
         <div id="audio-analyzer">
-            {/* Analyzer container */}
-            <div id="container"></div>
-
             {/* Audio element */}
             <audio id="audio" controls crossOrigin="true"></audio>
 
@@ -85,6 +82,9 @@ function AudioAnalyzer() {
                 Upload audio file:
                 <input id="upload" type="file" accept="audio/*" />
             </label>
+
+            {/* Analyzer container */}
+            <div id="container"></div>
         </div>
     );
 }

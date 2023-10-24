@@ -4,7 +4,7 @@ import FrequencyBin from './frequency-bin/FrequencyBin';
 function ReactiveSettings() {
     return (
         <>
-            <h1>Reactive Settings</h1>
+            <h3>Reactive Settings</h3>
             <AudioChannel />
             <FrequencyBin min={1} max={31} />
         </>

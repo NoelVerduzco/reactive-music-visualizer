@@ -4,7 +4,7 @@ import DataRate from './data-rate/DataRate';
 function GlobalSettings() {
     return (
         <div>
-            <h1>Global Settings</h1>
+            <h3>Global Settings</h3>
             <DataRate min={10} max={250} />
             <CanvasColor />
         </div>

@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import DataRateContext from '../../../../context/DataRateContext';
 
-function DataRate({min, max}) {
+function DataRate({ min, max }) {
     const { setDataRate } = useContext(DataRateContext);
 
     function handleDataRateChange(e) {
@@ -12,10 +12,10 @@ function DataRate({min, max}) {
     return (
         <>
             <label htmlFor="data-rate">
-                Data Rate (ms) [{min}, {max}]:
-                <br />
-                Lower rate = More reactive shapes
-                <br />
+                <h6>
+                    Data Rate (ms) [{min}, {max}]:
+                </h6>
+                <h6>Lower rate = More reactive shapes</h6>
             </label>
             <input
                 type="number"

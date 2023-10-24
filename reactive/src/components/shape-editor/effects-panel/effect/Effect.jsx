@@ -111,10 +111,12 @@ function Effect({ name, min, max, step }) {
                     if (shape.effects[i].effectName === 'vertical-shift') {
                         const reactiveVerticalShiftAnimate = {
                             y:
+                                shape.yPosition +
                                 currentVolume[shape.effects[i].frequencyBin]
                                     .value[
                                     shape.effects[i].isRightChannel ? 1 : 0
-                                ] * shape.effects[i].value,
+                                ] *
+                                    shape.effects[i].value,
                         };
                         animate = {
                             ...animate,
@@ -124,10 +126,12 @@ function Effect({ name, min, max, step }) {
                     if (shape.effects[i].effectName === 'horizontal-shift') {
                         const reactiveHorizontalShiftAnimate = {
                             x:
+                                shape.xPosition +
                                 currentVolume[shape.effects[i].frequencyBin]
                                     .value[
                                     shape.effects[i].isRightChannel ? 1 : 0
-                                ] * shape.effects[i].value,
+                                ] *
+                                    shape.effects[i].value,
                         };
                         animate = {
                             ...animate,
@@ -174,7 +178,7 @@ function Effect({ name, min, max, step }) {
                     }
                     if (shape.effects[i].effectName === 'vertical-shift') {
                         const reactiveVerticalShiftAnimate = {
-                            y: 0,
+                            y: shape.yPosition,
                         };
                         animate = {
                             ...animate,
@@ -183,7 +187,7 @@ function Effect({ name, min, max, step }) {
                     }
                     if (shape.effects[i].effectName === 'horizontal-shift') {
                         const reactiveHorizontalShiftAnimate = {
-                            x: 0,
+                            x: shape.xPosition,
                         };
                         animate = {
                             ...animate,
@@ -220,34 +224,38 @@ function Effect({ name, min, max, step }) {
     return (
         <>
             {!shapeInFocus ? (
-                <p>Effect: Waiting</p>
+                <h6>Effect: Waiting</h6>
             ) : (
                 <div
-                    className="effect-container"
+                    className="effect-container d-flex flex-column align-items-center"
                     style={{
-                        border: '1px solid red',
+                        border: 'solid 2px white',
+                        borderRadius: '10px',
+                        marginBottom: '20px',
                         backgroundColor: !effectInFocus
-                            ? 'red'
+                            ? 'black'
                             : effectInFocus.effectName === name
-                            ? 'green'
-                            : 'red',
+                            ? '#484848'
+                            : 'black',
                     }}
                     onClick={handleEffectClick}
                 >
-                    <p>{name} Effect Toggler</p>
-                    <div className="effect-toggler-container">
+                    <h5>{name.charAt(0).toUpperCase() + name.slice(1)}</h5>
+                    <div className="effect-toggler-container bg-black">
                         <button
                             className="general-effect-toggler-button"
                             onClick={handleEffectToggle}
                             style={
                                 isEnabled
-                                    ? { backgroundColor: 'green' }
-                                    : { backgroundColor: 'red' }
+                                    ? { backgroundColor: '#5f8f00' }
+                                    : { backgroundColor: '#c00' }
                             }
                         ></button>
                         <div>
                             <label htmlFor={name + '-value-slider'}>
-                                Effect Value [{min}, {max}]:
+                                <h6>
+                                    Effect Value [{min}, {max}]:
+                                </h6>
                             </label>
                             <input
                                 type="range"

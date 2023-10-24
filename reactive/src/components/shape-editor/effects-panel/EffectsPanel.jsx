@@ -3,7 +3,7 @@ import Effect from './effect/Effect';
 function EffectsPanel() {
     return (
         <>
-            <h1>Effects Panel</h1>
+            <h3>Effects Panel</h3>
             <div className="effects">
                 <Effect name={'fade'} min={0} max={1.0} step={0.1} />
                 <Effect name={'vertical-shift'} min={-500} max={500} step={5} />

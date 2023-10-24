@@ -1,9 +1,9 @@
 import { useContext } from 'react';
+import EffectInFocusContext from '../../../../context/EffectInFocusContext';
 import ShapeInFocusContext from '../../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
-import EffectInFocusContext from '../../../../context/EffectInFocusContext';
 
-function FrequencyBin({min, max}) {
+function FrequencyBin({ min, max }) {
     const { shapeInFocus, setShapeInFocus } = useContext(ShapeInFocusContext);
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
@@ -41,14 +41,14 @@ function FrequencyBin({min, max}) {
     return (
         <>
             {!shapeInFocus || !effectInFocus ? (
-                <p>Frequency Bin: Waiting</p>
+                <h6>Frequency Bin: Waiting</h6>
             ) : (
                 <>
                     <label htmlFor="frequency-bin">
-                        Frequency Bin [{min}, {max}]:
-                        <br />
-                        Each analyzer column is a bin
-                        <br />
+                        <h6>
+                            Frequency Bin [{min}, {max}]:
+                        </h6>
+                        <h6>Each analyzer column is a bin</h6>
                     </label>
                     <input
                         type="number"

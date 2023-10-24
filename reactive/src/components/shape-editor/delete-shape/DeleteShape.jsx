@@ -23,9 +23,10 @@ function DeleteShape() {
     return (
         <>
             {!shapeInFocus ? (
-                <p>Delete Shape Button: Waiting</p>
+                <h6>Delete Shape Button: Waiting</h6>
             ) : (
                 <button
+                className='btn-danger'
                     id="delete-shape"
                     type="button"
                     onClick={handleDeleteShapeClick}

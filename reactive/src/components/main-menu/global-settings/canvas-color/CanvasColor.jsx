@@ -10,7 +10,10 @@ function CanvasColor() {
 
     return (
         <div>
-            <label htmlFor="canvas-color">Canvas color: </label>
+            <label htmlFor="canvas-color">
+                <h6>Canvas color:</h6>
+            </label>
+            <br />
             <input
                 type="color"
                 id="canvas-color"

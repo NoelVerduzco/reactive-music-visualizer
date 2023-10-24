@@ -26,10 +26,13 @@ function ShapeColor() {
     return (
         <>
             {!shapeInFocus ? (
-                <p>Shape Color: Waiting</p>
+                <h6>Shape Color: Waiting</h6>
             ) : (
                 <div>
-                    <label htmlFor="shape-color">Shape color: </label>
+                    <label htmlFor="shape-color">
+                        <h6>Shape color: </h6>
+                    </label>
+                    <br />
                     <input
                         type="color"
                         id="shape-color"

@@ -9,18 +9,16 @@ body {
     background-color: black;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 #main-components {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 #display-shape {
-    margin-top: 50px;
+    margin: 20px;
 }
 
 #audio-analyzer {
@@ -32,10 +30,37 @@ body {
 }
 
 #canvas {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    text-align: center;
     border: white 1px solid;
-    height: 1080px;
-    width: 1920px;
-    display: flex;
+    height: 1100px;
+    width: 1800px;
+}
+
+.outer-container {
+    width: 500px;
+    height: 100vh;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 20px;
+}
+
+.inner-container {
+    border-radius: 20px;
+    padding: 20px;
+    height: 100%;
+}
+
+.minor-component-container {
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.reactive {
+    transform-origin: center;
 }
 
 .square {
@@ -71,14 +96,22 @@ body {
 .effect-toggler-container {
     display: flex;
     align-items: center;
-    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    border: 2px solid white;
     width: 300px;
+}
+
+.effect-container {
+    padding: 10px;
+    padding-bottom: 30px;
 }
 
 .general-effect-toggler-button {
     transform: rotate(90deg);
     width: 60px;
     height: 30px;
+    /* border: 2px solid white; */
 }
 
 .specific-effect-toggler-container {

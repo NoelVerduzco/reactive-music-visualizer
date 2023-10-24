@@ -1,15 +1,14 @@
 import { useContext } from 'react';
+import EffectInFocusContext from '../../../../context/EffectInFocusContext';
 import ShapeInFocusContext from '../../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
-import EffectInFocusContext from '../../../../context/EffectInFocusContext';
 
 function Shape({ shapeName }) {
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
     );
     const { setShapeInFocus } = useContext(ShapeInFocusContext);
-    const { effectInFocus, setEffectInFocus } =
-    useContext(EffectInFocusContext);
+    const { setEffectInFocus } = useContext(EffectInFocusContext);
 
     function makeRandomUniqueId(length) {
         let result = '';
@@ -71,7 +70,7 @@ function Shape({ shapeName }) {
             frequencyBin: 0,
         };
 
-        // value ranges [-720,720]
+        // value ranges [-n*360,n*360]
         const rotateEffect = {
             effectId: 0,
             uniqueId: makeRandomUniqueId(8),

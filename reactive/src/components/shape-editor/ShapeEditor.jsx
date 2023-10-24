@@ -11,17 +11,23 @@ function ShapeEditor() {
 
     return (
         <>
-            <h1>
-                Shape:{' '}
-                {!shapeInFocus
-                    ? 'Waiting'
-                    : shapeInFocus.shapeName.charAt(0).toUpperCase() +
-                      shapeInFocus.shapeName.slice(1)}
-            </h1>
-            <DeleteShape />
-            <Properties />
-            <EffectsPanel />
-            <ReactiveSettings />
+            <div className="minor-component-container bg-light">
+                <h3>
+                    Shape:{' '}
+                    {!shapeInFocus
+                        ? 'Waiting'
+                        : shapeInFocus.shapeName.charAt(0).toUpperCase() +
+                          shapeInFocus.shapeName.slice(1)}
+                </h3>
+                <DeleteShape />
+                <Properties />
+            </div>
+            <div className="minor-component-container bg-light">
+                <EffectsPanel />
+            </div>
+            <div className="minor-component-container bg-light">
+                <ReactiveSettings />
+            </div>
         </>
     );
 }

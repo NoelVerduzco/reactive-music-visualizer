@@ -11,12 +11,12 @@ import EffectInFocusContext from './context/EffectInFocusContext';
 import ShapeInFocusContext from './context/ShapeInFocusContext';
 import ShapePropsArrayContext from './context/ShapePropsArrayContext';
 
+import 'bootswatch/dist/cyborg/bootstrap.min.css';
 import './App.css';
 
 function App() {
     // TODO: Update canvasColor and dateRate to show current values when template is loaded
     // TODO: Create more shapes with different sizes
-    // TODO: SET XPOSITION AND YPOSITION OF SHAPES ON CANVAS
 
     // Global state
     const [currentVolume, setCurrentVolume] = useState(0);
@@ -25,11 +25,6 @@ function App() {
     const [shapeInFocus, setShapeInFocus] = useState(null);
     const [effectInFocus, setEffectInFocus] = useState(null);
     const [canvasColor, setCanvasColor] = useState('#000000');
-
-    // Check state values
-    useEffect(() => {
-        console.log("STATE VALUES")
-    });
 
     return (
         <>
@@ -55,15 +50,25 @@ function App() {
                                     }}
                                 >
                                     <div id="main-components">
-                                        <div>
-                                            <MainMenu />
-                                        </div>
-                                        <div>
-                                            <AudioAnalyzer />
+                                        <div id="audio-and-canvas-container">
                                             <Canvas />
+                                            <AudioAnalyzer />
                                         </div>
-                                        <div>
-                                            <ShapeEditor />
+                                        <div
+                                            id="main-menu-container"
+                                            className="outer-container bg-info"
+                                        >
+                                            <div className="inner-container bg-black">
+                                                <MainMenu />
+                                            </div>
+                                        </div>
+                                        <div
+                                            id="shape-editor-container"
+                                            className="outer-container bg-info"
+                                        >
+                                            <div className="inner-container bg-black">
+                                                <ShapeEditor />
+                                            </div>
                                         </div>
                                     </div>
                                 </ShapePropsArrayContext.Provider>
