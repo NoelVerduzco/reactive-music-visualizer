@@ -3,6 +3,7 @@ package capstone.reactive_api.models;
 import java.util.Objects;
 
 public class Effect {
+    // TODO: No validation since users cannot input effect data outside of provided UI boundaries
     private int effectId;
     private String effectName;
     private boolean isEnabled;

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Shape {
+    // TODO: No validation since users cannot input effect data outside of provided UI boundaries
     private int shapeId;
     private String shapeName;
     private String className;

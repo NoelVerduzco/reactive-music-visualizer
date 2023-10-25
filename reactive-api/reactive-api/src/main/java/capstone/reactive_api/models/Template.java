@@ -1,11 +1,15 @@
 package capstone.reactive_api.models;
 
+import jakarta.validation.constraints.NotBlank;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Template {
+    // TODO: No validation since users cannot input effect data outside of provided UI boundaries, except templateName
     private int templateId;
+    @NotBlank(message = "Template must be named.")
     private String templateName;
     private String canvasColor;
     private int dataRate;
