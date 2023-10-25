@@ -27,6 +27,7 @@ public class TemplateJdbcTemplateRepository implements TemplateRepository {
 
     @Override
     public List<Template> findAll() {
+
         final String sql = "select template_id, template_name, canvas_color, data_rate, is_active "
                 + "from template "
                 + "where is_active = 1;";
@@ -37,6 +38,7 @@ public class TemplateJdbcTemplateRepository implements TemplateRepository {
     @Override
     @Transactional
     public Template findById(int templateId) {
+
         final String sql = "select template_id, template_name, canvas_color, data_rate, is_active "
                 + "from template "
                 + "where template_id = ?;";
@@ -58,6 +60,7 @@ public class TemplateJdbcTemplateRepository implements TemplateRepository {
     @Override
     @Transactional
     public Template add(Template template) {
+
         final String sql = "insert into template (template_name, canvas_color, data_rate, is_active) values (?, ?, ?, ?); ";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -85,13 +88,44 @@ public class TemplateJdbcTemplateRepository implements TemplateRepository {
     }
 
     @Override
+    @Transactional
     public boolean update(Template template) {
-        return false;
+
+        Template oldTemplate = findById(template.getTemplateId());
+
+        for (int i = 0; i < oldTemplate.getShapes().size(); i++) {
+            jdbcTemplate.update("delete from effect where shape_id = ?", oldTemplate.getShapes().get(i).getShapeId());
+        }
+
+        jdbcTemplate.update("delete from shape where template_id = ?", oldTemplate.getTemplateId());
+
+        for (int i = 0; i < template.getShapes().size(); i++) {
+            addShapes(template.getShapes().get(i), template.getTemplateId());
+        }
+
+        for (int i = 0; i < template.getShapes().size(); i++) {
+            for (int j = 0; j < template.getShapes().get(i).getEffects().size(); j++) {
+                addEffects(template.getShapes().get(i).getEffects().get(j), template.getShapes().get(i).getShapeId());
+            }
+        }
+
+         final String sql = "update template set "
+                 + "template_name = ?, "
+                 + "canvas_color = ?, "
+                 + "data_rate = ? "
+                 + "where template_id = ?;";
+
+        return jdbcTemplate.update(sql, template.getTemplateName(), template.getCanvasColor(), template.getDataRate(), template.getTemplateId()) > 0;
     }
 
     @Override
     public boolean deleteById(int templateId) {
-        return false;
+
+        final String sql = "update template set "
+                + "is_active = 0 "
+                + "where template_id = ?;";
+
+        return jdbcTemplate.update(sql, templateId) > 0;
     }
 
     private void findShapesByTemplateId(Template template) {

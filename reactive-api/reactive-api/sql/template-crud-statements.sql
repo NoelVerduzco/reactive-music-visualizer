@@ -76,4 +76,9 @@ where template_id = 1;
 select effect_id, effect_name, is_enabled, effect_value, is_right_channel, frequency_bin, effect.shape_id 
 from effect 
 inner join shape on effect.shape_id = shape.shape_id 
-where effect.shape_id = 1;
+where effect.shape_id = 3;
+
+-- deleteById()
+
+delete from effect where shape_id = 3;
+delete from shape where template_id = 1;

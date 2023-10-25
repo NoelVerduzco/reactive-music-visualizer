@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,6 +28,7 @@ class TemplateJdbcTemplateRepositoryTest {
     void shouldFindAllActive() {
         List<Template> templates = repository.findAll();
         assertEquals(1, templates.size());
+        // TODO: working
     }
 
     @Test
@@ -38,6 +37,7 @@ class TemplateJdbcTemplateRepositoryTest {
         assertEquals(1, template.getTemplateId());
         assertEquals(1, template.getShapes().get(0).getTemplateId());
         assertEquals(1, template.getShapes().get(0).getEffects().get(0).getShapeId());
+        // TODO: working
     }
 
     @Test
@@ -53,20 +53,42 @@ class TemplateJdbcTemplateRepositoryTest {
         template.setShapes(shapes);
 
         Template actual = repository.add(template);
-
         assertNotNull(actual);
+
+        Template fromRepo = repository.findById(2);
+        assertEquals(actual, fromRepo);
+        // TODO: debugger shows true
     }
 
     @Test
     void shouldAddTemplateWithNoShapes() {
-        List<Shape> shapes = List.of();
-
         Template template = makeTemplate(1);
-        template.setShapes(shapes);
-
         Template actual = repository.add(template);
-
         assertNotNull(actual);
+
+        Template fromRepo = repository.findById(2);
+        assertEquals(actual, fromRepo);
+        // TODO: debugger shows true
+    }
+
+    @Test
+    void shouldUpdate() {
+        Template template = makeTemplate(1);
+        template.setTemplateId(1);
+        boolean actual = repository.update(template);
+        assertTrue(actual);
+        Template fromRepo = repository.findById(1);
+        assertEquals(template, fromRepo);
+        // TODO: debugger shows true
+    }
+
+    @Test
+    void shouldDelete() {
+        assertTrue(repository.deleteById(1));
+        Template template = repository.findById(1);
+        assertEquals(0, template.getIsActive());
+        assertEquals(List.of(), repository.findAll());
+        // TODO: working
     }
 
     private Effect makeEffect(int i) {
