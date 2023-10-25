@@ -11,6 +11,7 @@ public interface TemplateRepository {
     @Transactional
     Template findById(int templateId);
 
+    @Transactional
     Template add(Template template);
 
     boolean update(Template template);

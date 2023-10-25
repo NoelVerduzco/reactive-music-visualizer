@@ -62,6 +62,8 @@ select shape_id, shape_name, class_name, shape_color, x_position, y_position, te
 from shape 
 where template_id = 1;
 
+
+
 -- EFFECT STATEMENTS
 
 -- findALL()

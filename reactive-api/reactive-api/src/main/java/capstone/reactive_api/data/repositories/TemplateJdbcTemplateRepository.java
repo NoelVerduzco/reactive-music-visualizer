@@ -56,6 +56,7 @@ public class TemplateJdbcTemplateRepository implements TemplateRepository {
     }
 
     @Override
+    @Transactional
     public Template add(Template template) {
         final String sql = "insert into template (template_name, canvas_color, data_rate, is_active) values (?, ?, ?, ?); ";
 
@@ -76,7 +77,8 @@ public class TemplateJdbcTemplateRepository implements TemplateRepository {
         template.setTemplateId(keyHolder.getKey().intValue());
 
         for (int i = 0; i < template.getShapes().size(); i++){
-            addShapes(template.getShapes().get(i), template.getTemplateId());
+            Shape shape = addShapes(template.getShapes().get(i), template.getTemplateId());
+            if (shape == null) return null;
         }
 
         return template;
@@ -133,14 +135,15 @@ public class TemplateJdbcTemplateRepository implements TemplateRepository {
         shape.setShapeId(keyHolder.getKey().intValue());
 
         for (int i = 0; i < shape.getEffects().size(); i++) {
-            addEffects(shape.getEffects().get(i), shape.getShapeId());
+            Effect effect = addEffects(shape.getEffects().get(i), shape.getShapeId());
+            if (effect == null) return null;
         }
 
         return shape;
     }
 
     private Effect addEffects(Effect effect, int shapeId) {
-        final String sql = "inert into effect (effect_name, is_enabled, effect_value, is_right_channel, frequency_bin, shape_id) values (?, ?, ?, ?, ?, ?)";
+        final String sql = "insert into effect (effect_name, is_enabled, effect_value, is_right_channel, frequency_bin, shape_id) values (?, ?, ?, ?, ?, ?)";
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
