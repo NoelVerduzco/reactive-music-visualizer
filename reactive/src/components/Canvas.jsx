@@ -48,10 +48,10 @@ function Canvas() {
                             dragElastic={0}
                             dragConstraints={constraintsRef}
                             dragSnapToOrigin={false}
-                            onDragStart={(_event, _info) =>
+                            onDragStart={() =>
                                 setShapeInFocus(shape)
                             }
-                            onDragEnd={(_event, info) => {
+                            onDragEnd={(event, info) => {
                                 handleUpdatePositionOnDragEnd(
                                     info.point.x,
                                     info.point.y

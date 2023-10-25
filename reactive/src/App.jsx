@@ -15,8 +15,10 @@ import 'bootswatch/dist/cyborg/bootstrap.min.css';
 import './App.css';
 
 function App() {
+    // TODO: Replace shape dragging with position sliders
     // TODO: Update canvasColor and dateRate to show current values when template is loaded
     // TODO: Create more shapes with different sizes
+    // TODO: Fix scale effect
 
     // Global state
     const [currentVolume, setCurrentVolume] = useState(0);

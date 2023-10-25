@@ -1,10 +1,3 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-} */
-
 body {
     background-color: black;
     display: flex;
@@ -18,7 +11,7 @@ body {
 }
 
 #display-shape {
-    margin: 20px;
+    margin: 10px;
 }
 
 #audio-analyzer {
@@ -30,9 +23,6 @@ body {
 }
 
 #canvas {
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
     text-align: center;
     border: white 1px solid;
     height: 1100px;
@@ -63,31 +53,324 @@ body {
     transform-origin: center;
 }
 
-.square {
+/* SHAPES */
+
+.square-sm {
+    width: 25px;
+    height: 25px;
+    background: white;
+}
+
+.square-md {
+    width: 50px;
+    height: 50px;
+    background: white;
+}
+
+.square-lg {
     width: 100px;
     height: 100px;
     background: white;
 }
 
-.rectangle {
-    width: 200px;
+.rectangle-hor-sm {
+    width: 50px;
+    height: 25px;
+    background: white;
+}
+
+.rectangle-hor-md {
+    width: 100px;
+    height: 50px;
+    background: white;
+}
+
+.rectangle-hor-lg {
+    width: 150px;
+    height: 75px;
+    background: white;
+}
+
+.rectangle-ver-sm {
+    width: 25px;
+    height: 50px;
+    background: white;
+}
+
+.rectangle-ver-md {
+    width: 50px;
     height: 100px;
     background: white;
 }
 
-.circle {
+.rectangle-ver-lg {
+    width: 75px;
+    height: 150px;
+    background: white;
+}
+
+.circle-sm {
+    width: 25px;
+    height: 25px;
+    background: white;
+    border-radius: 50%;
+}
+
+.circle-md {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+}
+
+.circle-lg {
     width: 100px;
     height: 100px;
     background: white;
     border-radius: 50%;
 }
 
-.oval {
-    width: 200px;
+.ellipse-hor-sm {
+    width: 60px;
+    height: 45px;
+    background: white;
+    border-radius: 50%;
+}
+
+.ellipse-hor-md {
+    width: 100px;
+    height: 75px;
+    background: white;
+    border-radius: 50%;
+}
+
+.ellipse-hor-lg {
+    width: 140px;
+    height: 105px;
+    background: white;
+    border-radius: 50%;
+}
+
+.ellipse-ver-sm {
+    width: 45px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+}
+
+.ellipse-ver-md {
+    width: 75px;
     height: 100px;
     background: white;
-    border-radius: 100px / 50px;
+    border-radius: 50%;
 }
+
+.ellipse-ver-lg {
+    width: 105px;
+    height: 140px;
+    background: white;
+    border-radius: 50%;
+}
+
+.arch-hor-sm {
+    width: 45px;
+    height: 60px;
+    background: white;
+    border-radius: 50% / 100% 100% 0% 0%;
+}
+
+.arch-hor-md {
+    width: 75px;
+    height: 100px;
+    background: white;
+    border-radius: 50% / 100% 100% 0% 0%;
+}
+
+.arch-hor-lg {
+    width: 105px;
+    height: 140px;
+    background: white;
+    border-radius: 50% / 100% 100% 0% 0%;
+}
+
+.arch-ver-sm {
+    width: 60px;
+    height: 45px;
+    background: white;
+    border-radius: 50% / 100% 100% 0% 0%;
+}
+
+.arch-ver-md {
+    width: 100px;
+    height: 70px;
+    background: white;
+    border-radius: 50% / 100% 100% 0% 0%;
+}
+
+.arch-ver-lg {
+    width: 140px;
+    height: 105px;
+    background: white;
+    border-radius: 50% / 100% 100% 0% 0%;
+}
+
+.eye-sm {
+    width: 25px;
+    height: 25px;
+    background: white;
+    rotate: 45deg;
+    border-radius: 80% 0;
+}
+
+.eye-md {
+    width: 50px;
+    height: 50px;
+    background: white;
+    rotate: 45deg;
+    border-radius: 80% 0;
+}
+
+.eye-lg {
+    width: 100px;
+    height: 100px;
+    background: white;
+    rotate: 45deg;
+    border-radius: 80% 0;
+}
+
+.tear-sm {
+    width: 25px;
+    height: 25px;
+    background: white;
+    rotate: 45deg;
+    border-radius: 0 50% 50% 50%;
+}
+
+.tear-md {
+    width: 50px;
+    height: 50px;
+    background: white;
+    rotate: 45deg;
+    border-radius: 0 50% 50% 50%;
+}
+
+.tear-lg {
+    width: 100px;
+    height: 100px;
+    background: white;
+    rotate: 45deg;
+    border-radius: 0 50% 50% 50%;
+}
+
+.heart-sm {
+    width: 25px;
+    height: 25px;
+    background: white;
+    rotate: 45deg;
+    position: relative;
+}
+
+.heart-md {
+    width: 50px;
+    height: 50px;
+    background: white;
+    rotate: 45deg;
+    position: relative;
+}
+
+.heart-lg {
+    width: 100px;
+    height: 100px;
+    background: white;
+    rotate: 45deg;
+    position: relative;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: inherit;
+    translate: -50% 0;
+}
+
+.heart::after {
+    translate: 0 -50%;
+}
+
+.triangle-sm {
+    width: 25px;
+    height: 25px;
+    background: white;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.triangle-md {
+    width: 50px;
+    height: 50px;
+    background: white;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.triangle-lg {
+    width: 100px;
+    height: 100px;
+    background: white;
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.spark-sm {
+    width: 25px;
+    height: 25px;
+    background: white;
+    clip-path: polygon(
+        40% 40%,
+        50% 0,
+        60% 40%,
+        100% 50%,
+        60% 60%,
+        50% 100%,
+        40% 60%,
+        0 50%
+    );
+}
+
+.spark-md {
+    width: 50px;
+    height: 50px;
+    background: white;
+    clip-path: polygon(
+        40% 40%,
+        50% 0,
+        60% 40%,
+        100% 50%,
+        60% 60%,
+        50% 100%,
+        40% 60%,
+        0 50%
+    );
+}
+
+.spark-lg {
+    width: 100px;
+    height: 100px;
+    background: white;
+    clip-path: polygon(
+        40% 40%,
+        50% 0,
+        60% 40%,
+        100% 50%,
+        60% 60%,
+        50% 100%,
+        40% 60%,
+        0 50%
+    );
+}
+
+/* END SHAPES */
 
 .canvas-shape {
     position: absolute;
