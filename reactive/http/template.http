@@ -1,0 +1,53 @@
+@url = http://localhost:8080/api/template
+
+###
+
+GET {{url}} HTTP/1.1
+
+###
+
+GET {{url}}/2 HTTP/1.1
+
+###
+
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "templateName": "Test Template",
+    "canvasColor": "White",
+    "dataRate": 10,
+    "isActive": 1,
+    "shapes": []
+}
+
+###
+
+POST {{url}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "templateName": " ",
+    "canvasColor": "White",
+    "dataRate": 10,
+    "isActive": 1,
+    "shapes": []
+}
+
+###
+
+PUT {{url}}/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "templateId": 2,
+    "templateName": "Modified Test Template",
+    "canvasColor": "Black",
+    "dataRate": 20,
+    "isActive": 1,
+    "shapes": []
+}
+
+###
+
+DELETE {{url}}/1 HTTP/1.1

@@ -71,14 +71,14 @@ function Effect({ name, min, max, step }) {
             if (copiedArray[i].uniqueId === copiedShape.uniqueId) {
                 copiedShape.effects.filter(
                     (effect) => effect.effectName === name
-                )[0].value = e.target.value;
+                )[0].effectValue = e.target.value;
                 copiedArray[i] = copiedShape;
                 setShapeInFocus(copiedShape);
                 setShapePropsArray(copiedArray);
                 console.log(
                     shapeInFocus.effects.filter(
                         (effect) => effect.effectName === name
-                    )[0].value
+                    )[0].effectValue
                 );
                 break;
             }
@@ -104,7 +104,7 @@ function Effect({ name, min, max, step }) {
                                 : currentVolume[shape.effects[i].frequencyBin]
                                       .value[
                                       shape.effects[i].isRightChannel ? 1 : 0
-                                  ] * shape.effects[i].value,
+                                  ] * shape.effects[i].effectValue,
                         };
                         animate = { ...animate, ...reactiveFadeAnimate };
                     }
@@ -116,7 +116,7 @@ function Effect({ name, min, max, step }) {
                                     .value[
                                     shape.effects[i].isRightChannel ? 1 : 0
                                 ] *
-                                    shape.effects[i].value,
+                                    shape.effects[i].effectValue,
                         };
                         animate = {
                             ...animate,
@@ -131,7 +131,7 @@ function Effect({ name, min, max, step }) {
                                     .value[
                                     shape.effects[i].isRightChannel ? 1 : 0
                                 ] *
-                                    shape.effects[i].value,
+                                    shape.effects[i].effectValue,
                         };
                         animate = {
                             ...animate,
@@ -149,7 +149,7 @@ function Effect({ name, min, max, step }) {
                                 currentVolume[shape.effects[i].frequencyBin]
                                     .value[
                                     shape.effects[i].isRightChannel ? 1 : 0
-                                ] * shape.effects[i].value,
+                                ] * shape.effects[i].effectValue,
                         };
                         animate = { ...animate, ...reactiveScaleAnimate };
                     }
@@ -160,7 +160,7 @@ function Effect({ name, min, max, step }) {
                                 : currentVolume[shape.effects[i].frequencyBin]
                                       .value[
                                       shape.effects[i].isRightChannel ? 1 : 0
-                                  ] * shape.effects[i].value,
+                                  ] * shape.effects[i].effectValue,
                         };
                         animate = { ...animate, ...reactiveRotateAnimate };
                     }
@@ -265,12 +265,12 @@ function Effect({ name, min, max, step }) {
                                 value={
                                     shapeInFocus.effects.filter(
                                         (effect) => effect.effectName === name
-                                    )[0].value
+                                    )[0].effectValue
                                 }
                                 defaultValue={
                                     shapeInFocus.effects.filter(
                                         (effect) => effect.effectName === name
-                                    )[0].value
+                                    )[0].effectValue
                                 }
                                 id={name + '-value-slider'}
                                 onChange={(e) => handleValueChange(e)}

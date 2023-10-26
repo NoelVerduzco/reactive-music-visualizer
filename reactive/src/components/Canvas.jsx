@@ -57,16 +57,17 @@ function Canvas() {
                                     info.point.y
                                 );
                             }}
+                            style={{
+                                backgroundColor: shape.shapeColor,
+                                scale: shape.size,
+                            }}
                             shapeId={shape.shapeId}
                             uniqueId={shape.uniqueId}
                             shapeName={shape.shapeName}
                             className={'canvas-shape ' + shape.className}
-                            style={{
-                                backgroundColor: shape.color,
-                                scale: shape.size,
-                            }}
                             xPosition={shape.xPosition}
                             yPosition={shape.yPosition}
+                            templateId={shape.templateId}
                             effects={shape.effects}
                             initial={{
                                 ...shape.initial,

@@ -26,59 +26,64 @@ function Shape({ shapeName }) {
     }
 
     function handleCreateShapeClick(shapeName) {
-        // value ranges [0,1]
+        // effectValue ranges [0,1]
         const fadeEffect = {
             effectId: 0,
             uniqueId: makeRandomUniqueId(8),
             effectName: 'fade',
             isEnabled: false,
-            value: 0.5,
+            effectValue: 0.5,
             isRightChannel: false,
             frequencyBin: 0,
+            shapeId: 0,
         };
 
-        // value ranges [-N,N]
+        // effectValue ranges [-N,N]
         const verticalShiftEffect = {
             effectId: 0,
             uniqueId: makeRandomUniqueId(8),
             effectName: 'vertical-shift',
             isEnabled: false,
-            value: 0,
+            effectValue: 0,
             isRightChannel: false,
             frequencyBin: 0,
+            shapeId: 0,
         };
 
-        // value ranges [-N,N]
+        // effectValue ranges [-N,N]
         const horizontalShiftEffect = {
             effectId: 0,
             uniqueId: makeRandomUniqueId(8),
             effectName: 'horizontal-shift',
             isEnabled: false,
-            value: 0,
+            effectValue: 0,
             isRightChannel: false,
             frequencyBin: 0,
+            shapeId: 0,
         };
 
-        // value ranges [0,1]
+        // effectValue ranges [0,1]
         const scaleEffect = {
             effectId: 0,
             uniqueId: makeRandomUniqueId(8),
             effectName: 'scale',
             isEnabled: false,
-            value: 0.5,
+            effectValue: 0.5,
             isRightChannel: false,
             frequencyBin: 0,
+            shapeId: 0,
         };
 
-        // value ranges [-n*360,n*360]
+        // effectValue ranges [-n*360,n*360]
         const rotateEffect = {
             effectId: 0,
             uniqueId: makeRandomUniqueId(8),
             effectName: 'rotate',
             isEnabled: false,
-            value: 0,
+            effectValue: 0,
             isRightChannel: false,
             frequencyBin: 0,
+            shapeId: 0,
         };
 
         const effects = [
@@ -94,9 +99,10 @@ function Shape({ shapeName }) {
             uniqueId: makeRandomUniqueId(8),
             shapeName: shapeName,
             className: 'reactive ' + shapeName,
-            color: '#ffffff',
+            shapeColor: '#ffffff',
             xPosition: 0,
             yPosition: 0,
+            templateId: 0,
             effects: effects,
             initial: {},
             animate: {},

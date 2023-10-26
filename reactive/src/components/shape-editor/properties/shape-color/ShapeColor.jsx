@@ -14,7 +14,7 @@ function ShapeColor() {
 
         for (let i = 0; i < copiedArray.length; i++) {
             if (copiedArray[i].uniqueId === copiedShape.uniqueId) {
-                copiedShape.color = e.target.value;
+                copiedShape.shapeColor = e.target.value;
                 copiedArray[i] = copiedShape;
                 setShapeInFocus(copiedShape);
                 setShapePropsArray(copiedArray);
@@ -37,8 +37,8 @@ function ShapeColor() {
                         type="color"
                         id="shape-color"
                         name="shape-color"
-                        value={shapeInFocus.color}
-                        defaultValue={shapeInFocus.color}
+                        value={shapeInFocus.shapeColor}
+                        defaultValue={shapeInFocus.shapeColor}
                         onChange={(e) => handleShapeColorChange(e)}
                     />
                 </div>
