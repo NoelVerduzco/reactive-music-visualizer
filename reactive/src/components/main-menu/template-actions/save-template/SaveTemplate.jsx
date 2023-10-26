@@ -31,6 +31,8 @@ function SaveTemplate({ setAvailableTemplates }) {
     }
 
     function handleSaveClick() {
+        console.log("Template before save")
+        console.log(currentTemplate)
         save(currentTemplate)
             .then((errors) => {
                 if (!errors) {

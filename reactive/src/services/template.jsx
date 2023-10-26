@@ -33,8 +33,6 @@ async function addTemplate(template) {
 	const response = await fetch(BASE_URL, config);
 
 	if (response.ok) {
-		// Check the response in the console, how to extract value from the response object?
-		// console.log(response.json());
 		return null;
 	} else if (response.status === 400) {
 		return response.json();
@@ -65,7 +63,6 @@ async function updateTemplate(template) {
 		);
 	}
 }
-
 
 export async function save(template) {
 	return template.templateId > 0

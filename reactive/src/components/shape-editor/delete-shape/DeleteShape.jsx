@@ -3,6 +3,7 @@ import ShapeInFocusContext from '../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../context/ShapePropsArrayContext';
 
 function DeleteShape() {
+    // TODO: Fix shape shifting after deleting a shape
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
     );

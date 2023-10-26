@@ -3,6 +3,7 @@ import CurrentVolumeContext from '../../../../context/CurrentVolumeContext';
 import EffectInFocusContext from '../../../../context/EffectInFocusContext';
 import ShapeInFocusContext from '../../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
+import IsMusicPlayingContext from '../../../../context/IsMusicPlayingContext';
 
 function Effect({ name, min, max, step }) {
     const { shapeInFocus, setShapeInFocus } = useContext(ShapeInFocusContext);
@@ -12,17 +13,34 @@ function Effect({ name, min, max, step }) {
     const { effectInFocus, setEffectInFocus } =
         useContext(EffectInFocusContext);
     const { currentVolume } = useContext(CurrentVolumeContext);
+    const {isMusicPlaying} = useContext(IsMusicPlayingContext)
     const [isEnabled, setIsEnabled] = useState(false);
 
+    // update shape properties while music is playing
     useEffect(() => {
-        if (shapePropsArray.length > 0) {
-            let copiedArray = [...shapePropsArray];
-            for (let i = 0; i < copiedArray.length; i++) {
-                copiedArray[i] = refreshReactiveProperties(copiedArray[i]);
+        if(isMusicPlaying) {
+            if (shapePropsArray.length > 0) {
+                let copiedArray = [...shapePropsArray];
+                for (let i = 0; i < copiedArray.length; i++) {
+                    copiedArray[i] = refreshReactiveProperties(copiedArray[i]);
+                }
+                setShapePropsArray(copiedArray);
             }
-            setShapePropsArray(copiedArray);
         }
     }, [currentVolume]);
+
+    // update shape position while music is paused
+    useEffect(() => {
+        if(!isMusicPlaying) {
+            if (shapePropsArray.length > 0) {
+                let copiedArray = [...shapePropsArray];
+                for (let i = 0; i < copiedArray.length; i++) {
+                    copiedArray[i] = refreshReactiveProperties(copiedArray[i]);
+                }
+                setShapePropsArray(copiedArray);
+            }
+        }
+    }, [shapeInFocus]);
 
     useEffect(() => {
         if (shapeInFocus) {
@@ -91,7 +109,7 @@ function Effect({ name, min, max, step }) {
 
         if (shape.className.includes('reactive')) {
             for (let i = 0; i < shape.effects.length; i++) {
-                if (shape.effects[i].isEnabled) {
+                if (shape.effects[i].isEnabled && isMusicPlaying) {
                     if (shape.effects[i].effectName === 'fade') {
                         const reactiveFadeInitial = {
                             opacity: 0,

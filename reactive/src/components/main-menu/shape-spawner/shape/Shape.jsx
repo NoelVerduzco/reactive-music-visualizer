@@ -106,7 +106,7 @@ function Shape({ shapeName }) {
             effects: effects,
             initial: {},
             animate: {},
-            transition: { type: 'spring', stiffness: 500, damping: 25 },
+            transition: {},
         };
 
         setEffectInFocus(null);

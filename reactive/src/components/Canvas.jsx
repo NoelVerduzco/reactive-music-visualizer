@@ -29,13 +29,13 @@ function Canvas() {
         }
     }
 
-    const constraintsRef = useRef(null);
+    // const constraintsRef = useRef(null);
 
     return (
         <div
             id="canvas"
             style={{ backgroundColor: canvasColor }}
-            ref={constraintsRef}
+            // ref={constraintsRef}
         >
             {shapePropsArray.length === 0 ? (
                 <h1>Click on a shape to get started!</h1>
@@ -43,20 +43,20 @@ function Canvas() {
                 shapePropsArray.map((shape) => {
                     return (
                         <motion.div
-                            drag={true}
-                            dragMomentum={false}
-                            dragElastic={0}
-                            dragConstraints={constraintsRef}
-                            dragSnapToOrigin={false}
-                            onDragStart={() =>
-                                setShapeInFocus(shape)
-                            }
-                            onDragEnd={(event, info) => {
-                                handleUpdatePositionOnDragEnd(
-                                    info.point.x,
-                                    info.point.y
-                                );
-                            }}
+                            // drag={true}
+                            // dragMomentum={false}
+                            // dragElastic={0}
+                            // dragConstraints={constraintsRef}
+                            // dragSnapToOrigin={false}
+                            // onDragStart={() =>
+                            //     setShapeInFocus(shape)
+                            // }
+                            // onDragEnd={(event, info) => {
+                            //     handleUpdatePositionOnDragEnd(
+                            //         info.point.x,
+                            //         info.point.y
+                            //     );
+                            // }}
                             style={{
                                 backgroundColor: shape.shapeColor,
                                 scale: shape.size,

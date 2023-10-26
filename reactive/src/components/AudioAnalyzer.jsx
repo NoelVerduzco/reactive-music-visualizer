@@ -2,15 +2,19 @@ import AudioMotionAnalyzer from 'audiomotion-analyzer';
 import { useContext, useEffect, useState } from 'react';
 import CurrentVolumeContext from '../context/CurrentVolumeContext';
 import DataRateContext from '../context/DataRateContext';
+import IsMusicPlayingContext from '../context/IsMusicPlayingContext';
 
 function AudioAnalyzer() {
     const { dataRate } = useContext(DataRateContext);
-    const { setCurrentVolume } = useContext(CurrentVolumeContext);
+    const { currentVolume, setCurrentVolume } = useContext(CurrentVolumeContext);
+    const { isMusicPlaying, setIsMusicPlaying } = useContext(
+        IsMusicPlayingContext
+    );
 
     const [audioElement, setAudioElement] = useState(null);
     const [uploadElement, setUploadElement] = useState(null);
     const [audioMotion, setAudioMotion] = useState(null);
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [currentTime, setCurrentTime] = useState(0)
 
     useEffect(() => {
         // Find the audio element
@@ -29,7 +33,7 @@ function AudioAnalyzer() {
                         if (fileBlob) {
                             audioElement.src = URL.createObjectURL(fileBlob);
                             audioElement.play();
-                            setIsPlaying(!audioElement.paused);
+                            // setIsMusicPlaying(!audioElement.paused);
                         }
                     })
             );
@@ -54,9 +58,45 @@ function AudioAnalyzer() {
         }
     }, [audioElement]);
 
+    // Get current time data
+    useEffect(() => {
+        if(audioElement) {
+            const currentTimeId = setInterval(
+                () => getCurrentTime(),
+                100
+            );
+            return () => {
+                clearInterval(currentTimeId);
+            };
+        }
+    })
+
+    const getCurrentTime = () => {
+        setCurrentTime(audioElement.currentTime);
+        console.log(currentTime)
+    };
+
+    // Get is playing
+    useEffect(() => {
+        if(audioElement) {
+            const isMusicPlayingId = setInterval(
+                () => getIsMusicPlaying(),
+                100
+            );
+            return () => {
+                clearInterval(isMusicPlayingId);
+            };
+        }
+    })
+
+    const getIsMusicPlaying = () => {
+        setIsMusicPlaying(!audioElement.paused);
+        console.log(isMusicPlaying)
+    };
+
     // Get volume data
     useEffect(() => {
-        if (isPlaying) {
+        if (isMusicPlaying) {
             // Data rate (milliseconds)
             const currentVolumeId = setInterval(
                 () => getCurrentVolume(),
@@ -66,7 +106,7 @@ function AudioAnalyzer() {
                 clearInterval(currentVolumeId);
             };
         }
-    }, [isPlaying]);
+    }, [isMusicPlaying]);
 
     const getCurrentVolume = () => {
         setCurrentVolume(audioMotion.getBars());

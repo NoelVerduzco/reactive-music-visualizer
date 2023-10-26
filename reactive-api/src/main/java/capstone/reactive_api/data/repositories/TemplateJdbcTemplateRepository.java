@@ -103,12 +103,6 @@ public class TemplateJdbcTemplateRepository implements TemplateRepository {
             addShapes(template.getShapes().get(i), template.getTemplateId());
         }
 
-        for (int i = 0; i < template.getShapes().size(); i++) {
-            for (int j = 0; j < template.getShapes().get(i).getEffects().size(); j++) {
-                addEffects(template.getShapes().get(i).getEffects().get(j), template.getShapes().get(i).getShapeId());
-            }
-        }
-
          final String sql = "update template set "
                  + "template_name = ?, "
                  + "canvas_color = ?, "
@@ -183,7 +177,7 @@ public class TemplateJdbcTemplateRepository implements TemplateRepository {
         final String sql = "insert into effect (effect_name, is_enabled, effect_value, is_right_channel, frequency_bin, shape_id) values (?, ?, ?, ?, ?, ?)";
 
         effect.setShapeId(shapeId);
-        // TODO: Updated ps.setBoolean to ps.setInt since MySQL represents booleans as tinyints
+
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int rowsAffected = jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

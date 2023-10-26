@@ -11,6 +11,7 @@ import EffectInFocusContext from './context/EffectInFocusContext';
 import ShapeInFocusContext from './context/ShapeInFocusContext';
 import ShapePropsArrayContext from './context/ShapePropsArrayContext';
 import CurrentTemplateContext from './context/CurrentTemplateContext';
+import IsMusicPlayingContext from './context/IsMusicPlayingContext';
 
 import 'bootswatch/dist/cyborg/bootstrap.min.css';
 import './App.css';
@@ -25,7 +26,7 @@ function App() {
         canvasColor: '#000000',
         dataRate: 100,
         isActive: 1,
-        shapes: []
+        shapes: [],
     };
 
     // Global state
@@ -36,76 +37,73 @@ function App() {
     const [shapeInFocus, setShapeInFocus] = useState(null);
     const [effectInFocus, setEffectInFocus] = useState(null);
     const [currentVolume, setCurrentVolume] = useState(0);
+    const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
     useEffect(() => {
-        if (shapePropsArray.length > 0) {
-            // Check state
-        }
-    }, [shapePropsArray]);
+        // console.log(isMusicPlaying);
+        // console.log(currentVolume);
+        console.log(shapePropsArray)
+    },[shapePropsArray]);
 
     return (
         <>
-            <CurrentTemplateContext.Provider
-                value={{ currentTemplate, setCurrentTemplate }}
+            <IsMusicPlayingContext.Provider
+                value={{ isMusicPlaying, setIsMusicPlaying }}
             >
-                <CurrentVolumeContext.Provider
-                    value={{ currentVolume, setCurrentVolume }}
+                <CurrentTemplateContext.Provider
+                    value={{ currentTemplate, setCurrentTemplate }}
                 >
-                    <EffectInFocusContext.Provider
-                        value={{ effectInFocus, setEffectInFocus }}
+                    <CurrentVolumeContext.Provider
+                        value={{ currentVolume, setCurrentVolume }}
                     >
-                        <ShapeInFocusContext.Provider
-                            value={{ shapeInFocus, setShapeInFocus }}
+                        <EffectInFocusContext.Provider
+                            value={{ effectInFocus, setEffectInFocus }}
                         >
-                            <CanvasColorContext.Provider
-                                value={{ canvasColor, setCanvasColor }}
+                            <ShapeInFocusContext.Provider
+                                value={{ shapeInFocus, setShapeInFocus }}
                             >
-                                <DataRateContext.Provider
-                                    value={{ dataRate, setDataRate }}
+                                <CanvasColorContext.Provider
+                                    value={{ canvasColor, setCanvasColor }}
                                 >
-                                    <ShapePropsArrayContext.Provider
-                                        value={{
-                                            shapePropsArray,
-                                            setShapePropsArray,
-                                        }}
+                                    <DataRateContext.Provider
+                                        value={{ dataRate, setDataRate }}
                                     >
-                                        <div id="main-components">
-                                            <div id="audio-and-canvas-container">
-                                                <Canvas />
-                                                <AudioAnalyzer />
-                                            </div>
-                                            <div
-                                                id="main-menu-container"
-                                                className="outer-container bg-info"
-                                            >
-                                                <div className="inner-container bg-black">
-                                                    <MainMenu />
+                                        <ShapePropsArrayContext.Provider
+                                            value={{
+                                                shapePropsArray,
+                                                setShapePropsArray,
+                                            }}
+                                        >
+                                            <div id="main-components">
+                                                <div id="audio-and-canvas-container">
+                                                    <Canvas />
+                                                    <AudioAnalyzer />
+                                                </div>
+                                                <div
+                                                    id="main-menu-container"
+                                                    className="outer-container bg-info"
+                                                >
+                                                    <div className="inner-container bg-black">
+                                                        <MainMenu />
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    id="shape-editor-container"
+                                                    className="outer-container bg-info"
+                                                >
+                                                    <div className="inner-container bg-black">
+                                                        <ShapeEditor />
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div
-                                                id="shape-editor-container"
-                                                className="outer-container bg-info"
-                                            >
-                                                <div className="inner-container bg-black">
-                                                    <ShapeEditor />
-                                                </div>
-                                            </div>
-                                            <div
-                                                id="shape-editor-container"
-                                                className="outer-container bg-info"
-                                            >
-                                                <div className="inner-container bg-black">
-                                                    <ShapeEditor />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </ShapePropsArrayContext.Provider>
-                                </DataRateContext.Provider>
-                            </CanvasColorContext.Provider>
-                        </ShapeInFocusContext.Provider>
-                    </EffectInFocusContext.Provider>
-                </CurrentVolumeContext.Provider>
-            </CurrentTemplateContext.Provider>
+                                        </ShapePropsArrayContext.Provider>
+                                    </DataRateContext.Provider>
+                                </CanvasColorContext.Provider>
+                            </ShapeInFocusContext.Provider>
+                        </EffectInFocusContext.Provider>
+                    </CurrentVolumeContext.Provider>
+                </CurrentTemplateContext.Provider>
+            </IsMusicPlayingContext.Provider>
         </>
     );
 }

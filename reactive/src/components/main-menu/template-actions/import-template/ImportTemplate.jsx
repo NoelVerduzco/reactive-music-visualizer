@@ -35,9 +35,33 @@ function ImportTemplate({ availableTemplates }) {
         }
     }
 
+    function makeRandomUniqueId(length) {
+        let result = '';
+        const characters =
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const charactersLength = characters.length;
+        let counter = 0;
+        while (counter < length) {
+            result += characters.charAt(
+                Math.floor(Math.random() * charactersLength)
+            );
+            counter += 1;
+        }
+        return result;
+    }
+
     function handleSetTemplateClick(template) {
         findTemplateById(template.templateId)
             .then((completedTemplate) => {
+                
+                for (let i = 0; i < completedTemplate.shapes.length; i++) {
+                    completedTemplate.shapes[i] = {...completedTemplate.shapes[i], uniqueId: makeRandomUniqueId(8)}
+                }
+
+                console.log("Imported with uniqueId")
+                console.log(completedTemplate)
+                // TODO: DELETE CONSOLE LOGS
+                
                 setCurrentTemplate(completedTemplate);
                 setShapePropsArray(completedTemplate.shapes);
                 setShapeInFocus(null);
