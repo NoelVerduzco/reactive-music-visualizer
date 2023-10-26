@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { findAllTemplates } from '../../../services/template';
 import DeleteTemplate from './delete-template/DeleteTemplate';
 import ImportTemplate from './import-template/ImportTemplate';
 import SaveTemplate from './save-template/SaveTemplate';

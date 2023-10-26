@@ -37,12 +37,9 @@ function App() {
     const [effectInFocus, setEffectInFocus] = useState(null);
     const [currentVolume, setCurrentVolume] = useState(0);
 
-    // TODO: confirm that the type of isEnabled is a boolean, and that it does update in the global shapes array
-    // TODO: when checking the response.json() of the add method in the console, isEnabled and isRightChannel simply read "enable" and "rightchannel"
     useEffect(() => {
         if (shapePropsArray.length > 0) {
-            // console.log(typeof shapePropsArray[0].effects[0].isEnabled)
-            // console.log(shapePropsArray[0].effects[0])
+            // Check state
         }
     }, [shapePropsArray]);
 
@@ -83,6 +80,14 @@ function App() {
                                             >
                                                 <div className="inner-container bg-black">
                                                     <MainMenu />
+                                                </div>
+                                            </div>
+                                            <div
+                                                id="shape-editor-container"
+                                                className="outer-container bg-info"
+                                            >
+                                                <div className="inner-container bg-black">
+                                                    <ShapeEditor />
                                                 </div>
                                             </div>
                                             <div
