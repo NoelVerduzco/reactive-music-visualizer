@@ -27,7 +27,7 @@ function DeleteShape() {
                 <h6>Delete Shape Button: Waiting</h6>
             ) : (
                 <button
-                className='btn-danger'
+                className='btn-danger mb-3 me-3'
                     id="delete-shape"
                     type="button"
                     onClick={handleDeleteShapeClick}

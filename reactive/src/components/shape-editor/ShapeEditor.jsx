@@ -5,6 +5,7 @@ import DeleteShape from './delete-shape/DeleteShape';
 import EffectsPanel from './effects-panel/EffectsPanel';
 import Properties from './properties/Properties';
 import ReactiveSettings from './reactive-settings/ReactiveSettings';
+import UnfocusShape from './unfocus-shape/UnfocusShape';
 
 function ShapeEditor() {
     const { shapeInFocus } = useContext(ShapeInFocusContext);
@@ -19,6 +20,7 @@ function ShapeEditor() {
                         : shapeInFocus.shapeName.charAt(0).toUpperCase() +
                           shapeInFocus.shapeName.slice(1)}
                 </h3>
+                <UnfocusShape />
                 <DeleteShape />
                 <Properties />
             </div>

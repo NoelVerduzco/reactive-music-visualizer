@@ -29,13 +29,10 @@ function Canvas() {
         }
     }
 
-    // const constraintsRef = useRef(null);
-
     return (
         <div
             id="canvas"
             style={{ backgroundColor: canvasColor }}
-            // ref={constraintsRef}
         >
             {shapePropsArray.length === 0 ? (
                 <h1>Click on a shape to get started!</h1>
@@ -43,28 +40,15 @@ function Canvas() {
                 shapePropsArray.map((shape) => {
                     return (
                         <motion.div
-                            // drag={true}
-                            // dragMomentum={false}
-                            // dragElastic={0}
-                            // dragConstraints={constraintsRef}
-                            // dragSnapToOrigin={false}
-                            // onDragStart={() =>
-                            //     setShapeInFocus(shape)
-                            // }
-                            // onDragEnd={(event, info) => {
-                            //     handleUpdatePositionOnDragEnd(
-                            //         info.point.x,
-                            //         info.point.y
-                            //     );
-                            // }}
                             style={{
                                 backgroundColor: shape.shapeColor,
                                 scale: shape.size,
+                                border: shapeInFocus ? (shapeInFocus.uniqueId === shape.uniqueId ? "6px solid #f80" : "0px") : "", 
                             }}
                             shapeId={shape.shapeId}
                             uniqueId={shape.uniqueId}
                             shapeName={shape.shapeName}
-                            className={'canvas-shape ' + shape.className}
+                            className={'canvas-shape reactive' + shape.className}
                             xPosition={shape.xPosition}
                             yPosition={shape.yPosition}
                             templateId={shape.templateId}
