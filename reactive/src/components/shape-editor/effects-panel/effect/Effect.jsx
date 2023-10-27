@@ -16,7 +16,7 @@ function Effect({ name, min, max, step, description }) {
     const { isMusicPlaying } = useContext(IsMusicPlayingContext);
     const [isEnabled, setIsEnabled] = useState(false);
 
-    // update shape properties while music is playing
+    // Update shape properties while music is playing
     useEffect(() => {
         if (isMusicPlaying) {
             if (shapePropsArray.length > 0) {
@@ -29,7 +29,7 @@ function Effect({ name, min, max, step, description }) {
         }
     }, [currentVolume]);
 
-    // update shape position while music is paused
+    // Update shape position while music is paused
     useEffect(() => {
         if (!isMusicPlaying) {
             if (shapePropsArray.length > 0) {
@@ -42,6 +42,7 @@ function Effect({ name, min, max, step, description }) {
         }
     }, [shapeInFocus]);
 
+    // Update effect toggle buttons to be red or green on click
     useEffect(() => {
         if (shapeInFocus) {
             setIsEnabled(
@@ -93,11 +94,6 @@ function Effect({ name, min, max, step, description }) {
                 copiedArray[i] = copiedShape;
                 setShapeInFocus(copiedShape);
                 setShapePropsArray(copiedArray);
-                console.log(
-                    shapeInFocus.effects.filter(
-                        (effect) => effect.effectName === name
-                    )[0].effectValue
-                );
                 break;
             }
         }

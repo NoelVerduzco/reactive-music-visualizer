@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import toast from 'react-hot-toast';
 import {
     deleteTemplateById,
     findAllTemplates,
@@ -12,15 +13,16 @@ function DeleteTemplate({ availableTemplates, setAvailableTemplates }) {
 
     function handleImportClick() {
         if (availableTemplates.length === 0) {
-            console.log('No templates available for deletion.');
-            // TOAST ^
+            toast('No templates available for deletion.');
+        } else if (availableTemplates.length === 1) {
+            toast('There is 1 template available for deletion.');
+            setShow(true);
         } else {
-            console.log(
+            toast(
                 'There are ' +
                     availableTemplates.length +
                     ' templates available for deletion.'
             );
-            // TOAST ^
             setShow(true);
         }
     }
@@ -31,14 +33,13 @@ function DeleteTemplate({ availableTemplates, setAvailableTemplates }) {
                 findAllTemplates()
                     .then(setAvailableTemplates)
                     .catch((error) => {
-                        console.error(error);
-                        // TOAST ^
+                        toast.error(error);
                     });
-                // TOAST SUCCESS ^
+
+                toast.success('Successfully deleted template ' + template.templateName);
             })
             .catch((error) => {
-                console.log(error);
-                // TOAST ^
+                toast.error(error);
             });
 
         setShow(false);

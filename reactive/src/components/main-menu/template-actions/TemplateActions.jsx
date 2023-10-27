@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { findAllTemplates } from '../../../services/template';
 import DeleteTemplate from './delete-template/DeleteTemplate';
 import ImportTemplate from './import-template/ImportTemplate';
@@ -11,8 +12,7 @@ function TemplateActions() {
         findAllTemplates()
             .then(setAvailableTemplates)
             .catch((error) => {
-                console.error(error);
-                // TOAST ^
+                toast.error(error);
             });
     }, []);
 

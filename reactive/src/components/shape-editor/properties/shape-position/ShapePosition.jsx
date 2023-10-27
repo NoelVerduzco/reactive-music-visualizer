@@ -33,9 +33,10 @@ function ShapePosition({ position, min, max, step }) {
                 <div>
                     <label htmlFor={position + '-value-slider'}>
                         <h6>
-                            {position} Value [{min}, {max}]:
+                            {position}:
                         </h6>
                     </label>
+                    <br/>
                     <input
                         type="range"
                         step={step}

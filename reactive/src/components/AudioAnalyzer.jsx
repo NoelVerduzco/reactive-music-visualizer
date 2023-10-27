@@ -22,9 +22,9 @@ function AudioAnalyzer() {
     }, []);
 
     useEffect(() => {
+        // Upload audio files
         if (audioElement && !uploadElement) {
             setUploadElement(
-                // Upload audio files
                 document
                     .getElementById('upload')
                     .addEventListener('change', (e) => {
@@ -38,9 +38,9 @@ function AudioAnalyzer() {
             );
         }
 
+        // Instantiate the audio analyzer
         if (audioElement && !audioMotion) {
             setAudioMotion(
-                // Instantiate the audio analyzer
                 new AudioMotionAnalyzer(document.getElementById('container'), {
                     source: audioElement,
                     height: 800,
@@ -58,8 +58,8 @@ function AudioAnalyzer() {
         }
     }, [audioElement]);
 
-    // Get current time data
     useEffect(() => {
+        // Get current time data
         if (audioElement) {
             const currentTimeId = setInterval(() => getCurrentTime(), 100);
             return () => {
@@ -70,11 +70,10 @@ function AudioAnalyzer() {
 
     const getCurrentTime = () => {
         setCurrentTime(audioElement.currentTime);
-        console.log(currentTime);
     };
 
-    // Get is playing
     useEffect(() => {
+        // Get is playing
         if (audioElement) {
             const isMusicPlayingId = setInterval(
                 () => getIsMusicPlaying(),
@@ -88,11 +87,10 @@ function AudioAnalyzer() {
 
     const getIsMusicPlaying = () => {
         setIsMusicPlaying(!audioElement.paused);
-        console.log(isMusicPlaying);
     };
 
-    // Get volume data
     useEffect(() => {
+        // Get "volume" data (not actually volume until frequency bin and audio channel are connected)
         if (isMusicPlaying) {
             // Data rate (milliseconds)
             const currentVolumeId = setInterval(
@@ -109,7 +107,7 @@ function AudioAnalyzer() {
         setCurrentVolume(audioMotion.getBars());
     };
 
-    // Local state
+    // Create number label 1 - 31 for frequency bins
     const [frequencyBins, setFrequencyBins] = useState([]);
 
     useEffect(() => {
@@ -131,6 +129,7 @@ function AudioAnalyzer() {
                 <input id="upload" type="file" accept="audio/*" />
             </label>
 
+            {/* Analyzer frequency bin number label */}
             <div className="d-flex justify-content-around">
                 {frequencyBins.map((bin) => {
                     return (

@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import toast from 'react-hot-toast';
 import CanvasColorContext from '../../../../context/CanvasColorContext';
 import CurrentTemplateContext from '../../../../context/CurrentTemplateContext';
 import DataRateContext from '../../../../context/DataRateContext';
@@ -14,7 +15,6 @@ function SaveTemplate({ setAvailableTemplates }) {
     const { shapePropsArray } = useContext(ShapePropsArrayContext);
     const { canvasColor } = useContext(CanvasColorContext);
     const { dataRate } = useContext(DataRateContext);
-    const [errors, setErrors] = useState([]);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -29,37 +29,26 @@ function SaveTemplate({ setAvailableTemplates }) {
     }
 
     function handleSaveClick() {
-        console.log('Template before save');
-        console.log(currentTemplate);
         save(currentTemplate)
             .then((errors) => {
                 if (!errors) {
                     if (currentTemplate.templateId > 0) {
-                        console.log('Successful update');
-                        // TOAST ^
+                        toast.success('Template successfully updated!');
                     } else {
-                        console.log('Successful add');
-                        // TOAST ^
+                        toast.success('Template successfully saved!');
                     }
-
                     findAllTemplates()
                         .then(setAvailableTemplates)
                         .catch((error) => {
-                            console.error(error);
-                            // TOAST ^
+                            toast.error(error);
                         });
                 } else {
-                    setErrors(errors);
-                    console.log(errors);
-                    console.log('Not successful');
-                    // TOAST ^
+                    toast.error(errors);
                 }
             })
             .catch((error) => {
-                console.error(error);
-                // TOAST ^
+                toast.error(error);
             });
-
         setShow(false);
     }
 

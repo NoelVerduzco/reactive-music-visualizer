@@ -14,15 +14,15 @@ function EffectsPanel() {
                 />
                 <Effect
                     name={'vertical-shift'}
-                    min={-1000}
-                    max={1000}
+                    min={-1100}
+                    max={1100}
                     step={5}
                     description={'UP -------------------------- DOWN'}
                 />
                 <Effect
                     name={'horizontal-shift'}
-                    min={-1000}
-                    max={1000}
+                    min={-1800}
+                    max={1800}
                     step={5}
                     description={'LEFT ----------------------- RIGHT'}
                 />

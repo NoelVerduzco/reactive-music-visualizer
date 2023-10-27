@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import toast from 'react-hot-toast';
 import CanvasColorContext from '../../../../context/CanvasColorContext';
 import CurrentTemplateContext from '../../../../context/CurrentTemplateContext';
 import DataRateContext from '../../../../context/DataRateContext';
@@ -22,15 +23,16 @@ function ImportTemplate({ availableTemplates }) {
 
     function handleImportClick() {
         if (availableTemplates.length === 0) {
-            console.log('No templates available for import.');
-            // TOAST
+            toast('No templates available for import.');
+        } else if (availableTemplates.length === 1) {
+            toast('There is 1 template available for import.');
+            setShow(true);
         } else {
-            console.log(
+            toast(
                 'There are ' +
                     availableTemplates.length +
                     ' templates available for import.'
             );
-            //TOAST ^
             setShow(true);
         }
     }
@@ -59,24 +61,21 @@ function ImportTemplate({ availableTemplates }) {
                         uniqueId: makeRandomUniqueId(8),
                     };
                 }
-
-                console.log('Imported with uniqueId');
-                console.log(completedTemplate);
-                // TODO: DELETE CONSOLE LOGS
-
                 setCurrentTemplate(completedTemplate);
                 setShapePropsArray(completedTemplate.shapes);
                 setShapeInFocus(null);
                 setEffectInFocus(null);
                 setDataRate(completedTemplate.dataRate);
                 setCanvasColor(completedTemplate.canvasColor);
-                // TOAST ^
+                toast.success(
+                    'Template ' +
+                        template.templateName +
+                        ' successfully imported!'
+                );
             })
             .catch((error) => {
-                console.log(error);
-                // TOAST ^
+                toast.error(error);
             });
-
         setShow(false);
     }
 

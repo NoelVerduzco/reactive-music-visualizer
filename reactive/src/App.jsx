@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 import AudioAnalyzer from './components/AudioAnalyzer';
 import Canvas from './components/Canvas';
@@ -67,6 +68,7 @@ function App() {
                                                 setShapePropsArray,
                                             }}
                                         >
+                                            <Toaster />
                                             <div id="main-components">
                                                 <div id="audio-and-canvas-container">
                                                     <Canvas />
