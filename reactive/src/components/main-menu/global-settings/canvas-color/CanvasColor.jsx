@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import CanvasColorContext from '../../../../context/CanvasColorContext';
 
 function CanvasColor() {
-    const { setCanvasColor } = useContext(CanvasColorContext);
+    const { canvasColor, setCanvasColor } = useContext(CanvasColorContext);
 
     function handleCanvasColorChange(e) {
         setCanvasColor(e.target.value);
@@ -18,7 +18,8 @@ function CanvasColor() {
                 type="color"
                 id="canvas-color"
                 name="canvas-color"
-                defaultValue="#000000"
+                value={canvasColor}
+                defaultValue={canvasColor}
                 onChange={(e) => handleCanvasColorChange(e)}
             />
         </div>

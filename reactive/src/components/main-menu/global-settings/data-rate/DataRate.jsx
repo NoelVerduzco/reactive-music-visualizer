@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import DataRateContext from '../../../../context/DataRateContext';
 
 function DataRate({ min, max }) {
-    const { setDataRate } = useContext(DataRateContext);
+    const { dataRate, setDataRate } = useContext(DataRateContext);
 
     function handleDataRateChange(e) {
         if (e.target.value > max || e.target.value < min) return;
@@ -23,7 +23,8 @@ function DataRate({ min, max }) {
                 name="data-rate"
                 min={min}
                 max={max}
-                defaultValue="100"
+                value={dataRate}
+                defaultValue={dataRate}
                 onChange={(e) => handleDataRateChange(e)}
             />
         </>

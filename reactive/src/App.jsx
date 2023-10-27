@@ -17,7 +17,6 @@ import 'bootswatch/dist/cyborg/bootstrap.min.css';
 import './App.css';
 
 function App() {
-    // TODO: Replace shape dragging with position sliders
     // TODO: Fix scale effect
 
     const defaultTemplate = {
