@@ -13,21 +13,25 @@ function ShapeEditor() {
     return (
         <>
             <div className="minor-component-container bg-light">
-                <h3>
+                <h3 className='mb-4'>
                     Shape:{' '}
                     {!shapeInFocus
                         ? 'Waiting'
                         : shapeInFocus.shapeName.charAt(0).toUpperCase() +
                           shapeInFocus.shapeName.slice(1)}
                 </h3>
-                <UnfocusShape />
-                <DeleteShape />
-                <Properties />
+                <div className="d-flex flex-column">
+                    <UnfocusShape />
+                    <DeleteShape />
+                </div>
+                <div className="d-flex flex-column">
+                    <Properties />
+                </div>
             </div>
             <div className="minor-component-container bg-light">
                 <EffectsPanel />
             </div>
-            <div className="minor-component-container bg-light">
+            <div className="minor-component-container bg-light d-flex flex-column">
                 <ReactiveSettings />
             </div>
         </>

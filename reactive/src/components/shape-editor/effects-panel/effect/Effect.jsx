@@ -5,7 +5,7 @@ import ShapeInFocusContext from '../../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
 import IsMusicPlayingContext from '../../../../context/IsMusicPlayingContext';
 
-function Effect({ name, min, max, step }) {
+function Effect({ name, min, max, step, description }) {
     const { shapeInFocus, setShapeInFocus } = useContext(ShapeInFocusContext);
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
@@ -13,12 +13,12 @@ function Effect({ name, min, max, step }) {
     const { effectInFocus, setEffectInFocus } =
         useContext(EffectInFocusContext);
     const { currentVolume } = useContext(CurrentVolumeContext);
-    const {isMusicPlaying} = useContext(IsMusicPlayingContext)
+    const { isMusicPlaying } = useContext(IsMusicPlayingContext);
     const [isEnabled, setIsEnabled] = useState(false);
 
     // update shape properties while music is playing
     useEffect(() => {
-        if(isMusicPlaying) {
+        if (isMusicPlaying) {
             if (shapePropsArray.length > 0) {
                 let copiedArray = [...shapePropsArray];
                 for (let i = 0; i < copiedArray.length; i++) {
@@ -31,7 +31,7 @@ function Effect({ name, min, max, step }) {
 
     // update shape position while music is paused
     useEffect(() => {
-        if(!isMusicPlaying) {
+        if (!isMusicPlaying) {
             if (shapePropsArray.length > 0) {
                 let copiedArray = [...shapePropsArray];
                 for (let i = 0; i < copiedArray.length; i++) {
@@ -271,9 +271,10 @@ function Effect({ name, min, max, step }) {
                         ></button>
                         <div>
                             <label htmlFor={name + '-value-slider'}>
-                                <h6>
+                                {/* <h6>
                                     Effect Value [{min}, {max}]:
-                                </h6>
+                                </h6> */}
+                                <h6>{description}</h6>
                             </label>
                             <input
                                 type="range"
@@ -295,6 +296,8 @@ function Effect({ name, min, max, step }) {
                             />
                         </div>
                     </div>
+                    
+                    
                 </div>
             )}
         </>

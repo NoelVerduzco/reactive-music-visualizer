@@ -3,38 +3,38 @@ import Shape from './shape/Shape';
 function ShapeSpawner() {
     return (
         <>
-            <h3>Shape Spawner</h3>
-            <div className="d-flex flex-wrap">
-                <Shape shapeName="square-sm" />
-                <Shape shapeName="square-md" />
-                <Shape shapeName="square-lg" />
-                <Shape shapeName="rectangle-hor-sm" />
-                <Shape shapeName="rectangle-hor-md" />
-                <Shape shapeName="rectangle-hor-lg" />
-                <Shape shapeName="rectangle-ver-sm" />
-                <Shape shapeName="rectangle-ver-md" />
-                <Shape shapeName="rectangle-ver-lg" />
-                <Shape shapeName="circle-sm" />
-                <Shape shapeName="circle-md" />
-                <Shape shapeName="circle-lg" />
-                <Shape shapeName="ellipse-hor-sm" />
-                <Shape shapeName="ellipse-hor-md" />
-                <Shape shapeName="ellipse-hor-lg" />
-                <Shape shapeName="ellipse-ver-sm" />
-                <Shape shapeName="ellipse-ver-md" />
-                <Shape shapeName="ellipse-ver-lg" />
-                <Shape shapeName="arch-hor-sm" />
-                <Shape shapeName="arch-hor-md" />
-                <Shape shapeName="arch-hor-lg" />
-                <Shape shapeName="arch-ver-sm" />
-                <Shape shapeName="arch-ver-md" />
-                <Shape shapeName="arch-ver-lg" />
-                <Shape shapeName="triangle-sm" />
-                <Shape shapeName="triangle-md" />
-                <Shape shapeName="triangle-lg" />
-                <Shape shapeName="spark-sm" />
-                <Shape shapeName="spark-md" />
-                <Shape shapeName="spark-lg" />
+            <h3 className='mb-4'>Shape Spawner</h3>
+            <div className="d-flex flex-wrap btn btn-outline-warning">
+                <Shape shapeName="shape-spawner square-sm" />
+                <Shape shapeName="shape-spawner square-md" />
+                <Shape shapeName="shape-spawner square-lg" />
+                <Shape shapeName="shape-spawner rectangle-hor-sm" />
+                <Shape shapeName="shape-spawner rectangle-hor-md" />
+                <Shape shapeName="shape-spawner rectangle-hor-lg" />
+                <Shape shapeName="shape-spawner rectangle-ver-sm" />
+                <Shape shapeName="shape-spawner rectangle-ver-md" />
+                <Shape shapeName="shape-spawner rectangle-ver-lg" />
+                <Shape shapeName="shape-spawner circle-sm" />
+                <Shape shapeName="shape-spawner circle-md" />
+                <Shape shapeName="shape-spawner circle-lg" />
+                <Shape shapeName="shape-spawner ellipse-hor-sm" />
+                <Shape shapeName="shape-spawner ellipse-hor-md" />
+                <Shape shapeName="shape-spawner ellipse-hor-lg" />
+                <Shape shapeName="shape-spawner ellipse-ver-sm" />
+                <Shape shapeName="shape-spawner ellipse-ver-md" />
+                <Shape shapeName="shape-spawner ellipse-ver-lg" />
+                <Shape shapeName="shape-spawner arch-hor-sm" />
+                <Shape shapeName="shape-spawner arch-hor-md" />
+                <Shape shapeName="shape-spawner arch-hor-lg" />
+                <Shape shapeName="shape-spawner arch-ver-sm" />
+                <Shape shapeName="shape-spawner arch-ver-md" />
+                <Shape shapeName="shape-spawner arch-ver-lg" />
+                <Shape shapeName="shape-spawner triangle-sm" />
+                <Shape shapeName="shape-spawner triangle-md" />
+                <Shape shapeName="shape-spawner triangle-lg" />
+                <Shape shapeName="shape-spawner spark-sm" />
+                <Shape shapeName="shape-spawner spark-md" />
+                <Shape shapeName="shape-spawner spark-lg" />
             </div>
         </>
     );

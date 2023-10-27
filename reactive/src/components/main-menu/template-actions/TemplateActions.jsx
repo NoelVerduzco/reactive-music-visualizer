@@ -18,13 +18,15 @@ function TemplateActions() {
 
     return (
         <>
-            <h3>Template Actions</h3>
-            <ImportTemplate availableTemplates={availableTemplates} />
-            <SaveTemplate setAvailableTemplates={setAvailableTemplates} />
-            <DeleteTemplate
-                availableTemplates={availableTemplates}
-                setAvailableTemplates={setAvailableTemplates}
-            />
+            <div className="d-flex flex-column">
+                <h3  className='mb-4'>Template Actions</h3>
+                <ImportTemplate availableTemplates={availableTemplates} />
+                <SaveTemplate setAvailableTemplates={setAvailableTemplates} />
+                <DeleteTemplate
+                    availableTemplates={availableTemplates}
+                    setAvailableTemplates={setAvailableTemplates}
+                />
+            </div>
         </>
     );
 }

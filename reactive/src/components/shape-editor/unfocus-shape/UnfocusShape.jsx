@@ -14,7 +14,7 @@ function UnfocusShape() {
                 <h6>Unfocus Shape: Waiting</h6>
             ) : (
                 <button
-                    className="btn-warning mb-3 me-3"
+                    className="btn-warning mb-3"
                     onClick={handleUnfocusShapeCLick}
                 >
                     Unfocus Shape

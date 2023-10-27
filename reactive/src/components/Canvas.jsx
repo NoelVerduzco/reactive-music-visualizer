@@ -43,7 +43,7 @@ function Canvas() {
                             style={{
                                 backgroundColor: shape.shapeColor,
                                 scale: shape.size,
-                                border: shapeInFocus ? (shapeInFocus.uniqueId === shape.uniqueId ? "6px solid #f80" : "0px") : "", 
+                                border: shapeInFocus ? (shapeInFocus.uniqueId === shape.uniqueId ? "6px solid #f80" : "1px solid black") : "", 
                             }}
                             shapeId={shape.shapeId}
                             uniqueId={shape.uniqueId}
