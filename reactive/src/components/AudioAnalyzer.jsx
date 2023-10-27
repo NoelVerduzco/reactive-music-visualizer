@@ -6,7 +6,8 @@ import IsMusicPlayingContext from '../context/IsMusicPlayingContext';
 
 function AudioAnalyzer() {
     const { dataRate } = useContext(DataRateContext);
-    const { currentVolume, setCurrentVolume } = useContext(CurrentVolumeContext);
+    const { currentVolume, setCurrentVolume } =
+        useContext(CurrentVolumeContext);
     const { isMusicPlaying, setIsMusicPlaying } = useContext(
         IsMusicPlayingContext
     );
@@ -14,7 +15,7 @@ function AudioAnalyzer() {
     const [audioElement, setAudioElement] = useState(null);
     const [uploadElement, setUploadElement] = useState(null);
     const [audioMotion, setAudioMotion] = useState(null);
-    const [currentTime, setCurrentTime] = useState(0)
+    const [currentTime, setCurrentTime] = useState(0);
 
     useEffect(() => {
         // Find the audio element
@@ -33,7 +34,6 @@ function AudioAnalyzer() {
                         if (fileBlob) {
                             audioElement.src = URL.createObjectURL(fileBlob);
                             audioElement.play();
-                            // setIsMusicPlaying(!audioElement.paused);
                         }
                     })
             );
@@ -53,6 +53,7 @@ function AudioAnalyzer() {
                     ledBars: true,
                     splitGradient: true,
                     showPeaks: false,
+                    ansiBands: true
                 })
             );
         }
@@ -60,25 +61,22 @@ function AudioAnalyzer() {
 
     // Get current time data
     useEffect(() => {
-        if(audioElement) {
-            const currentTimeId = setInterval(
-                () => getCurrentTime(),
-                100
-            );
+        if (audioElement) {
+            const currentTimeId = setInterval(() => getCurrentTime(), 100);
             return () => {
                 clearInterval(currentTimeId);
             };
         }
-    })
+    });
 
     const getCurrentTime = () => {
         setCurrentTime(audioElement.currentTime);
-        console.log(currentTime)
+        console.log(currentTime);
     };
 
     // Get is playing
     useEffect(() => {
-        if(audioElement) {
+        if (audioElement) {
             const isMusicPlayingId = setInterval(
                 () => getIsMusicPlaying(),
                 100
@@ -87,11 +85,11 @@ function AudioAnalyzer() {
                 clearInterval(isMusicPlayingId);
             };
         }
-    })
+    });
 
     const getIsMusicPlaying = () => {
         setIsMusicPlaying(!audioElement.paused);
-        console.log(isMusicPlaying)
+        console.log(isMusicPlaying);
     };
 
     // Get volume data
@@ -112,6 +110,17 @@ function AudioAnalyzer() {
         setCurrentVolume(audioMotion.getBars());
     };
 
+    // Local state
+    const [frequencyBins, setFrequencyBins] = useState([]);
+
+    useEffect(() => {
+        let binColumns = [];
+        for (let i = 1; i < 32; i++) {
+            binColumns[i] = i;
+        }
+        setFrequencyBins(binColumns);
+    },[]);
+
     return (
         <div id="audio-analyzer">
             {/* Audio element */}
@@ -122,6 +131,16 @@ function AudioAnalyzer() {
                 Upload audio file:
                 <input id="upload" type="file" accept="audio/*" />
             </label>
+
+            <div className="d-flex justify-content-around">
+                {frequencyBins.map((bin) => {
+                    return (
+                        <div className="">
+                            <h6>{bin}</h6>
+                        </div>
+                    );
+                })}
+            </div>
 
             {/* Analyzer container */}
             <div id="container"></div>

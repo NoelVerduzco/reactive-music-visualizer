@@ -38,12 +38,6 @@ function App() {
     const [currentVolume, setCurrentVolume] = useState(0);
     const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 
-    // useEffect(() => {
-    //     console.log(isMusicPlaying);
-    //     console.log(currentVolume);
-    //     console.log(shapePropsArray)
-    // },[shapePropsArray]);
-
     return (
         <>
             <IsMusicPlayingContext.Provider
