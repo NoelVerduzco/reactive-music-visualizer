@@ -1,6 +1,6 @@
 import GlobalSettings from './global-settings/GlobalSettings';
-import TemplateActions from './template-actions/TemplateActions';
 import ShapeSpawner from './shape-spawner/ShapeSpawner';
+import TemplateActions from './template-actions/TemplateActions';
 
 function MainMenu() {
     return (

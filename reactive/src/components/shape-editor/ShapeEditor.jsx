@@ -1,5 +1,4 @@
 import { useContext } from 'react';
-
 import ShapeInFocusContext from '../../context/ShapeInFocusContext';
 import DeleteShape from './delete-shape/DeleteShape';
 import EffectsPanel from './effects-panel/EffectsPanel';
@@ -13,7 +12,7 @@ function ShapeEditor() {
     return (
         <>
             <div className="minor-component-container bg-light">
-                <h3 className='mb-4'>
+                <h3 className="mb-4">
                     Shape:{' '}
                     {!shapeInFocus
                         ? 'Waiting'

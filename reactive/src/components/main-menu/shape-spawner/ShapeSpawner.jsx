@@ -3,7 +3,7 @@ import Shape from './shape/Shape';
 function ShapeSpawner() {
     return (
         <>
-            <h3 className='mb-4'>Shape Spawner</h3>
+            <h3 className="mb-4">Shape Spawner</h3>
             <div className="d-flex flex-wrap btn btn-outline-warning">
                 <Shape shapeName="shape-spawner square-sm" />
                 <Shape shapeName="shape-spawner square-md" />

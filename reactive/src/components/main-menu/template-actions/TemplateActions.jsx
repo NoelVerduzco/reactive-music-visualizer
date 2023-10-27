@@ -19,7 +19,7 @@ function TemplateActions() {
     return (
         <>
             <div className="d-flex flex-column">
-                <h3  className='mb-4'>Template Actions</h3>
+                <h3 className="mb-4">Template Actions</h3>
                 <ImportTemplate availableTemplates={availableTemplates} />
                 <SaveTemplate setAvailableTemplates={setAvailableTemplates} />
                 <DeleteTemplate

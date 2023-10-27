@@ -10,12 +10,12 @@ import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
 import { findTemplateById } from '../../../../services/template';
 
 function ImportTemplate({ availableTemplates }) {
-    const { setShapePropsArray } = useContext(ShapePropsArrayContext);
     const { setCurrentTemplate } = useContext(CurrentTemplateContext);
+    const { setShapePropsArray } = useContext(ShapePropsArrayContext);
     const { setShapeInFocus } = useContext(ShapeInFocusContext);
     const { setEffectInFocus } = useContext(EffectInFocusContext);
-    const { setDataRate } = useContext(DataRateContext);
     const { setCanvasColor } = useContext(CanvasColorContext);
+    const { setDataRate } = useContext(DataRateContext);
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -53,15 +53,17 @@ function ImportTemplate({ availableTemplates }) {
     function handleSetTemplateClick(template) {
         findTemplateById(template.templateId)
             .then((completedTemplate) => {
-                
                 for (let i = 0; i < completedTemplate.shapes.length; i++) {
-                    completedTemplate.shapes[i] = {...completedTemplate.shapes[i], uniqueId: makeRandomUniqueId(8)}
+                    completedTemplate.shapes[i] = {
+                        ...completedTemplate.shapes[i],
+                        uniqueId: makeRandomUniqueId(8),
+                    };
                 }
 
-                console.log("Imported with uniqueId")
-                console.log(completedTemplate)
+                console.log('Imported with uniqueId');
+                console.log(completedTemplate);
                 // TODO: DELETE CONSOLE LOGS
-                
+
                 setCurrentTemplate(completedTemplate);
                 setShapePropsArray(completedTemplate.shapes);
                 setShapeInFocus(null);

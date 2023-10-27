@@ -3,7 +3,6 @@ import ShapeInFocusContext from '../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../context/ShapePropsArrayContext';
 
 function DeleteShape() {
-    // TODO: Fix shape shifting after deleting a shape
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
     );
@@ -27,7 +26,7 @@ function DeleteShape() {
                 <h6>Delete Shape Button: Waiting</h6>
             ) : (
                 <button
-                className='btn-danger mb-3'
+                    className="btn-danger mb-3"
                     id="delete-shape"
                     type="button"
                     onClick={handleDeleteShapeClick}

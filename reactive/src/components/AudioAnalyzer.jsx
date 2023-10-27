@@ -6,8 +6,7 @@ import IsMusicPlayingContext from '../context/IsMusicPlayingContext';
 
 function AudioAnalyzer() {
     const { dataRate } = useContext(DataRateContext);
-    const { currentVolume, setCurrentVolume } =
-        useContext(CurrentVolumeContext);
+    const { setCurrentVolume } = useContext(CurrentVolumeContext);
     const { isMusicPlaying, setIsMusicPlaying } = useContext(
         IsMusicPlayingContext
     );
@@ -53,7 +52,7 @@ function AudioAnalyzer() {
                     ledBars: true,
                     splitGradient: true,
                     showPeaks: false,
-                    ansiBands: true
+                    ansiBands: true,
                 })
             );
         }
@@ -119,7 +118,7 @@ function AudioAnalyzer() {
             binColumns[i] = i;
         }
         setFrequencyBins(binColumns);
-    },[]);
+    }, []);
 
     return (
         <div id="audio-analyzer">

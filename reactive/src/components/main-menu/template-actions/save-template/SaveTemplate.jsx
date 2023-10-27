@@ -11,12 +11,10 @@ function SaveTemplate({ setAvailableTemplates }) {
     const { currentTemplate, setCurrentTemplate } = useContext(
         CurrentTemplateContext
     );
+    const { shapePropsArray } = useContext(ShapePropsArrayContext);
     const { canvasColor } = useContext(CanvasColorContext);
     const { dataRate } = useContext(DataRateContext);
-    const { shapePropsArray } = useContext(ShapePropsArrayContext);
-
     const [errors, setErrors] = useState([]);
-
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -31,8 +29,8 @@ function SaveTemplate({ setAvailableTemplates }) {
     }
 
     function handleSaveClick() {
-        console.log("Template before save")
-        console.log(currentTemplate)
+        console.log('Template before save');
+        console.log(currentTemplate);
         save(currentTemplate)
             .then((errors) => {
                 if (!errors) {

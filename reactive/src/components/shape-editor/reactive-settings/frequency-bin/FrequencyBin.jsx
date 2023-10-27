@@ -4,10 +4,10 @@ import ShapeInFocusContext from '../../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
 
 function FrequencyBin({ min, max }) {
-    const { shapeInFocus, setShapeInFocus } = useContext(ShapeInFocusContext);
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
     );
+    const { shapeInFocus, setShapeInFocus } = useContext(ShapeInFocusContext);
     const { effectInFocus, setEffectInFocus } =
         useContext(EffectInFocusContext);
 

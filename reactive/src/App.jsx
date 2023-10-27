@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import AudioAnalyzer from './components/AudioAnalyzer';
 import Canvas from './components/Canvas';
 import MainMenu from './components/main-menu/MainMenu';
 import ShapeEditor from './components/shape-editor/ShapeEditor';
 import CanvasColorContext from './context/CanvasColorContext';
+import CurrentTemplateContext from './context/CurrentTemplateContext';
 import CurrentVolumeContext from './context/CurrentVolumeContext';
 import DataRateContext from './context/DataRateContext';
 import EffectInFocusContext from './context/EffectInFocusContext';
+import IsMusicPlayingContext from './context/IsMusicPlayingContext';
 import ShapeInFocusContext from './context/ShapeInFocusContext';
 import ShapePropsArrayContext from './context/ShapePropsArrayContext';
-import CurrentTemplateContext from './context/CurrentTemplateContext';
-import IsMusicPlayingContext from './context/IsMusicPlayingContext';
 
 import 'bootswatch/dist/cyborg/bootstrap.min.css';
 import './App.css';
@@ -30,11 +30,11 @@ function App() {
 
     // Global state
     const [currentTemplate, setCurrentTemplate] = useState(defaultTemplate);
-    const [canvasColor, setCanvasColor] = useState('#000000');
-    const [dataRate, setDataRate] = useState(100);
     const [shapePropsArray, setShapePropsArray] = useState([]);
     const [shapeInFocus, setShapeInFocus] = useState(null);
     const [effectInFocus, setEffectInFocus] = useState(null);
+    const [canvasColor, setCanvasColor] = useState('#000000');
+    const [dataRate, setDataRate] = useState(100);
     const [currentVolume, setCurrentVolume] = useState(0);
     const [isMusicPlaying, setIsMusicPlaying] = useState(false);
 

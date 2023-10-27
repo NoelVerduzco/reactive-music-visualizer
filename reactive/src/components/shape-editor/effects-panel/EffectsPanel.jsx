@@ -3,7 +3,7 @@ import Effect from './effect/Effect';
 function EffectsPanel() {
     return (
         <>
-            <h3 className='mb-4 '>Effects Panel</h3>
+            <h3 className="mb-4 ">Effects Panel</h3>
             <div className="effects">
                 <Effect
                     name={'fade'}

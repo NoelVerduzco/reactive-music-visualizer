@@ -1,15 +1,15 @@
 import { useContext, useEffect, useState } from 'react';
 import CurrentVolumeContext from '../../../../context/CurrentVolumeContext';
 import EffectInFocusContext from '../../../../context/EffectInFocusContext';
+import IsMusicPlayingContext from '../../../../context/IsMusicPlayingContext';
 import ShapeInFocusContext from '../../../../context/ShapeInFocusContext';
 import ShapePropsArrayContext from '../../../../context/ShapePropsArrayContext';
-import IsMusicPlayingContext from '../../../../context/IsMusicPlayingContext';
 
 function Effect({ name, min, max, step, description }) {
-    const { shapeInFocus, setShapeInFocus } = useContext(ShapeInFocusContext);
     const { shapePropsArray, setShapePropsArray } = useContext(
         ShapePropsArrayContext
     );
+    const { shapeInFocus, setShapeInFocus } = useContext(ShapeInFocusContext);
     const { effectInFocus, setEffectInFocus } =
         useContext(EffectInFocusContext);
     const { currentVolume } = useContext(CurrentVolumeContext);
@@ -296,8 +296,6 @@ function Effect({ name, min, max, step, description }) {
                             />
                         </div>
                     </div>
-                    
-                    
                 </div>
             )}
         </>
