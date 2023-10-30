@@ -29,7 +29,7 @@ function EffectsPanel() {
                 <Effect
                     name={'scale'}
                     min={0}
-                    max={1.0}
+                    max={2.0}
                     step={0.01}
                     description={'SMALLER ------------- BIGGER'}
                 />

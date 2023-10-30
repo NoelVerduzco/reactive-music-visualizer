@@ -154,7 +154,7 @@ function Effect({ name, min, max, step, description }) {
                     }
                     if (shape.effects[i].effectName === 'scale') {
                         const reactiveScaleInitial = {
-                            scale: 0,
+                            scale: 1,
                         };
                         initial = { ...initial, ...reactiveScaleInitial };
 

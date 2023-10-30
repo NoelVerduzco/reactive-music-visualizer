@@ -1,30 +1,64 @@
-# Capstone: Proposal
+# Reactive: Music Visualizer
 
 ## Application Details
 
 ### Name
-* Reactive
+* Reactive: Music Visualizer
 
-### Build Tools Used
-* Vite + React
+### Description
 
-### Packages Used
-* audiomotion-analyzer
-* framer-motion
-* vite-plugin-svgr
+> Reactive is a music visualizing application that lets users create reactive visuals using their favorite songs. This application is built for people of all ages. Creating your first visuals is easy-to-learn and only takes a few minutes! The three foundational models Reactive uses are templates, shapes, and effects. A template is a savable configuration of music-data (data rate, audio channel, frequency bin) and visual (shapes, effects) properties. A template has a canvas, the place where users can spawn pre-made shapes onto. Each template can hold a multitude of shapes, where each shape comes pre-packaged with five main visual effects users can toggle and modify. The effect options are fade, vertical shift, horizontal shift, scale, and rotate, all of which can be combined. When the user is ready, they can load a music file from their computer and play the song. While the song is playing, the audio analyzer will display the left/right audio channels of the song, as well as the frequencies and volumes in each audio channel. Using this information, users can connect their shapes and effects to the music-data endpoints, ultimately creating an ensemble of visuals that react to the music!
 
-### Data to be saved
-* **Global Settings**
-* Date Rate: int
-* Canvas Color: String
+### Technologies
 
+#### **Front-end**
+> * Vite + React.js
+> * Boostrap 5
+> * HTML 5
+> * CSS 3
+> * JavaScript
+> * REST Client
+> * VSCode
 
-* **Shape Properties**
-* Color: String
-* Size: int
+> * audiomotion-analyzer
+> * framer-motion
+> * react-bootstrap
+> * bootswatch
+> * react-hot-toast
 
-* **Shape Effects**
-* ...
+#### **Back-end**
+> * Java
+> * Spring Framework
+> * Spring MVC
+> * Spring Jdbc
+> * IntelliJ
+
+#### **Database**
+> * MySQL
+
+### First Time Setup
+
+#### **Front-end**
+> * Directory: ~/dev-10-capstone/reactive
+> * Commands: npm install
+
+#### **Back-end**
+> * Directory: ~/dev-10-capstone/reactive-api/sql/reactive-tables-prod.sql
+> * Commands: run script using MySQL
+
+### Resources
+
+#### **URLS**
+* AudioMotion-Analyzer: https://www.npmjs.com/package/audiomotion-analyzer/v/4.3.0
+* Framer-Motion: https://www.framer.com/motion/
+* React-Bootstrap Documentation: https://react-bootstrap.netlify.app/
+* Bootstrap 5 Documentation: https://getbootstrap.com/
+* Bootswatch: https://bootswatch.com/
+* React Hot Toast Documentation: https://react-hot-toast.com/
+* Simple CSS-only Shapes: https://alvaromontoro.com/blog/68042/shapes-in-css
+* React.js Naming Conventions: https://www.linkedin.com/pulse/react-js-naming-convention-kristiyan-velkov/
+* CSS Element Positioning: https://developer.mozilla.org/en-US/docs/Web/CSS/position
+* Project Presentation Slides Template: https://slidesgo.com/theme/programming-language-workshop-for-beginners#position-113&results-2841
 
 ## 1. Problem Statement
 
@@ -46,15 +80,15 @@
 
 ## 3. Glossary
 
-> **Visuals:** An arrangement of **shapes** with **effects**, placed on the application's **canvas**, that react to particular **frequencies bins** and their respective **volume**.
+> **Template:** An arrangement of **shapes** with **effects**, placed on the application's **canvas**, that react to particular **frequencies bins** and their respective **volume**.
 > 
 > **Shapes:** Part of the visual experience. Shapes can look like: squares, circles, lines, etc. Shapes can have multiple effects, with each effect being tied to its own frequency bin and volume.
 > 
 > **Effects:** Part of the visual experience. Effects can be: rotate, spin, move left, move right, shrink, grow, etc. Every individual effect can be tied to one particular frequency bin, or be tied to completely different frequency bins.
 > 
-> **Frequency bins:** The average frequency of a tiny section on the frequency spectrum. In this application, there are 60 bins to choose from on the frequency spectrum. They look like colorful columns once music is playing. The first bin is on the far left while the 60th bin in on the far right.
+> **Frequency bins:** The average frequency of a tiny section on the frequency spectrum. In this application, there are 31 bins to choose from on the frequency spectrum. They look like colorful columns once music is playing. The 1st bin is on the far left while the 31st bin in on the far right.
 > 
-> **Frequency of sound:** Humans typically hear sounds in a range of frequencies, from 20 Hertz (low-pitched, bass) to 20,000 Hertz (high-pitched, treble).
+> **Frequency of sound:** Humans typically hear sounds in a range of frequencies, from 20 Hertz (low-pitched, bass) to 20,000 Hertz (high-pitched, treble). This is the range of frequencies that users can select from.
 > 
 > **Volume:** How loudly or quietly a frequency bin is played at. When a frequency bin is quiet, only a few blocks in the bin will be colored. When a frequency bin is loud, a majority of the blocks in the bin will be colored.
 > 
@@ -66,13 +100,13 @@
 > 
 > Play a music file (UNREGISTERED USER)
 > 
-> Add a shape to canvas (implies adding effects and connect effects to frequency bins) (UNREGISTERED USER)
+> Add a shape to canvas (implies adding effects and connecting effects to frequency bins) (UNREGISTERED USER)
 > 
 > Play visuals (UNREGISTERED USER)
 > 
-> Save visuals (REGISTERED USER)
+> Save visuals (UNREGISTERED USER)
 > 
-> Load visuals (REGISTERED USER)
+> Load visuals (UNREGISTERED USER)
 
 ## 5. User Stories/Scenarios
 
@@ -80,7 +114,7 @@
 > 
 > Can upload a music file into the application. Used for creating visuals.
 > 
-> Precondition: UNREGISTERED & REGISTERED USER must have a music file of any format on their computer.
+> Precondition: UNREGISTERED USER must have a music file of any format on their computer.
 > 
 > Post-condition: None
 
@@ -88,7 +122,7 @@
 > 
 > Can play a music file in the application. Used for creating visuals.
 > 
-> Precondition: UNREGISTERED & REGISTERED USER must have already uploaded a music file of any format from their computer.
+> Precondition: UNREGISTERED USER must have already uploaded a music file of any format from their computer.
 > 
 > Post-condition: None
 
@@ -108,19 +142,18 @@
 > 
 > Post-condition: None
 
-
 > **Save visuals**
 > 
 > Can save visuals to database.
 > 
-> Precondition: Must be a REGISTERED USER to save.
+> Precondition: UNREGISTERED USER must give template a name.
 >
 > Post-condition: None
 
 > **Load visuals**
-> 
+>
 > Can load visuals from database.
 > 
-> Precondition: Must be a REGISTERED USER to load.
+> Precondition: None
 > 
 > Post-condition: None
