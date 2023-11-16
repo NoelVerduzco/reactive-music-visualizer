@@ -6,6 +6,7 @@ body {
 }
 
 #main-components {
+    background-color: black;
     display: flex;
     align-items: flex-start;
 }
@@ -29,7 +30,7 @@ body {
 
 .outer-container {
     width: 500px;
-    height: 100vh;
+    height: 100%;
     padding: 20px;
     border-radius: 10px;
     margin-left: 20px;
@@ -49,6 +50,10 @@ body {
 
 .reactive {
     transform-origin: center;
+}
+
+#shape-spawner-container {
+    margin-bottom: 0px;
 }
 
 .shape-spawner {
@@ -97,6 +102,10 @@ body {
 .specific-effect-toggler-button {
     width: 10px;
     height: 10px;
+}
+
+#reactive-settings-container {
+    margin-bottom: 0px;
 }
 
 /* SHAPES */

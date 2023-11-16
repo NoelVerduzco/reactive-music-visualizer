@@ -30,7 +30,10 @@ function ShapeEditor() {
             <div className="minor-component-container bg-light">
                 <EffectsPanel />
             </div>
-            <div className="minor-component-container bg-light d-flex flex-column">
+            <div
+                id="reactive-settings-container"
+                className="minor-component-container bg-light d-flex flex-column"
+            >
                 <ReactiveSettings />
             </div>
         </>

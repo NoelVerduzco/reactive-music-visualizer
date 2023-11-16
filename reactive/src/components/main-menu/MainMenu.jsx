@@ -11,7 +11,10 @@ function MainMenu() {
             <div className="minor-component-container bg-light">
                 <GlobalSettings />
             </div>
-            <div className="minor-component-container bg-light">
+            <div
+                id="shape-spawner-container"
+                className="minor-component-container bg-light"
+            >
                 <ShapeSpawner />
             </div>
         </>
